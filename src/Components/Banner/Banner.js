@@ -1,9 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography } from "@material-ui/core";
+import { Container, makeStyles, Typography } from "@material-ui/core";
+import Carousel from "./Carousel";
 
-import React from "react";
-
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   banner: {
     backgroundImage: "url(./banner2.jpg)",
   },
@@ -21,9 +19,16 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     textAlign: "center",
   },
+  carousel: {
+    height: "50%",
+    display: "flex",
+    alignItems: "center",
+  },
 }));
-const Banner = () => {
+
+function Banner() {
   const classes = useStyles();
+
   return (
     <div className={classes.banner}>
       <Container className={classes.bannerContent}>
@@ -49,9 +54,10 @@ const Banner = () => {
             Get all the Info regarding your favorite Crypto Currency
           </Typography>
         </div>
+        <Carousel />
       </Container>
     </div>
   );
-};
+}
 
 export default Banner;
