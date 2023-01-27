@@ -4,21 +4,21 @@ import {
   Container,
   createTheme,
   LinearProgress,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   TextField,
   ThemeProvider,
   Typography,
 } from "@material-ui/core";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import { Classnames } from "react-alice-carousel";
 
 const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
@@ -100,7 +100,9 @@ const CoinsTable = () => {
                           }}
                           key={head}
                           align={head === "Coin" ? "" : "right"}
-                        ></TableCell>
+                        >
+                          {head}
+                        </TableCell>
                       )
                     )}
                   </TableRow>
@@ -111,10 +113,23 @@ const CoinsTable = () => {
 
                     return (
                       <TableRow
-                        onClick={() => history.pushState(`/coins/${row.id}`)}
-                        className={Classnames.row}
+                        onClick={() => history.push(`/coins/${row.id}`)}
+                        className={classes.row}
                         key={row.name}
-                      ></TableRow>
+                      >
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          style={{ display: "flex", gap: 15 }}
+                        >
+                          <img
+                            src={row?.image}
+                            alt={row.name}
+                            height="50"
+                            style={{ marginBottom: 10 }}
+                          />
+                        </TableCell>
+                      </TableRow>
                     );
                   })}
                 </TableBody>
