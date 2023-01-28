@@ -3,22 +3,26 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
   createTheme,
+  TableCell,
   LinearProgress,
-  TextField,
   ThemeProvider,
   Typography,
+  TextField,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableContainer,
+  Table,
+  Paper,
 } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
+
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
@@ -26,7 +30,7 @@ const CoinsTable = () => {
   const [search, setSearch] = useState();
   const history = useNavigate();
 
-  const { currency } = CryptoState();
+  const { currency, symbol } = CryptoState();
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -87,7 +91,7 @@ const CoinsTable = () => {
             {loading ? (
               <LinearProgress style={{ backgroundColor: "gold" }} />
             ) : (
-              <Table>
+              <Table aria-label="simple table">
                 <TableHead style={{ backgroundColor: "#EEBC1D" }}>
                   <TableRow>
                     {["Coin", "Price", "24h Change", "Market Cap"].map(
@@ -110,7 +114,6 @@ const CoinsTable = () => {
                 <TableBody>
                   {handleSearch().map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
-
                     return (
                       <TableRow
                         onClick={() => history.push(`/coins/${row.id}`)}
@@ -120,7 +123,10 @@ const CoinsTable = () => {
                         <TableCell
                           component="th"
                           scope="row"
-                          style={{ display: "flex", gap: 15 }}
+                          style={{
+                            display: "flex",
+                            gap: 15,
+                          }}
                         >
                           <img
                             src={row?.image}
@@ -128,6 +134,41 @@ const CoinsTable = () => {
                             height="50"
                             style={{ marginBottom: 10 }}
                           />
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <span
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: 22,
+                              }}
+                            >
+                              {row.symbol}
+                            </span>
+                            <span style={{ color: "darkgrey" }}>
+                              {row.name}
+                            </span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          {symbol}{" "}
+                          {numberWithCommas(row.current_price.toFixed(2))}
+                        </TableCell>
+                        <TableCell
+                          style={{
+                            color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {profit && "+"}
+                          {row.price_change_percentage_24h.toFixed(2)}%
+                        </TableCell>
+                        <TableCell>
+                          {symbol}{" "}
+                          {numberWithCommas(
+                            row.market_cap.toString().slice(0, -6)
+                          )}
+                          M
                         </TableCell>
                       </TableRow>
                     );
