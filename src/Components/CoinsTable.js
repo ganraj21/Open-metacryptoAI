@@ -1,9 +1,9 @@
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
+import TableCell from "@material-ui/core/TableCell";
 import {
   Container,
   createTheme,
-  TableCell,
   LinearProgress,
   ThemeProvider,
   Typography,
@@ -13,7 +13,6 @@ import {
   TableHead,
   TableContainer,
   Table,
-  Paper,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,26 +26,10 @@ export function numberWithCommas(x) {
 const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState();
-  const history = useNavigate();
+  const [search, setSearch] = useState(0);
+  const navigate = useNavigate();
 
   const { currency, symbol } = CryptoState();
-
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-
-    setCoins(data);
-    setLoading(false);
-  };
-
-  console.log(coins);
-
-  useEffect(() => {
-    fetchCoins();
-    // its fetching the coins
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currency]);
 
   const darkTheme = createTheme({
     palette: {
@@ -57,15 +40,43 @@ const CoinsTable = () => {
     },
   });
 
+  const fetchCoins = async () => {
+    setLoading(true);
+    const { data } = await axios.get(CoinList(currency));
+    console.log(data);
+
+    setCoins(data);
+    setLoading(false);
+  };
+  var flag = true;
+  useEffect(() => {
+    fetchCoins();
+    // its fetching the coins
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currency]);
+
   const handleSearch = () => {
-    return coins.filter(
-      (coin) =>
-        coin.name.toLowerCase().includes(search) ||
-        coin.symbol.toLowerCase().includes(search)
-    );
+    if (search !== 0) {
+      return coins.filter(
+        (coin) =>
+          coin.name.toLowerCase().includes(search) ||
+          coin.symbol.toLowerCase().includes(search)
+      );
+    } else {
+      return coins;
+    }
   };
 
-  const useStyles = makeStyles(() => {});
+  const useStyles = makeStyles({
+    row: {
+      backgroundColor: "#16171a",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#131111",
+      },
+      fontFamily: "Montserrat",
+    },
+  });
 
   const classes = useStyles();
 
@@ -116,13 +127,13 @@ const CoinsTable = () => {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
                       <TableRow
-                        onClick={() => history.push(`/coins/${row.id}`)}
-                        className={classes.row}
+                        onClick={() => navigate(`/coins/${row.id}`)}
+                        className={classes.coin}
                         key={row.name}
                       >
                         <TableCell
                           component="th"
-                          scope="row"
+                          scope="coin"
                           style={{
                             display: "flex",
                             gap: 15,
@@ -135,7 +146,10 @@ const CoinsTable = () => {
                             style={{ marginBottom: 10 }}
                           />
                           <div
-                            style={{ display: "flex", flexDirection: "column" }}
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
                           >
                             <span
                               style={{
@@ -150,11 +164,12 @@ const CoinsTable = () => {
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
-                          {symbol}{" "}
+                        <TableCell align="right">
+                          {symbol}
                           {numberWithCommas(row.current_price.toFixed(2))}
                         </TableCell>
                         <TableCell
+                          align="right"
                           style={{
                             color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                             fontWeight: 500,
@@ -163,12 +178,11 @@ const CoinsTable = () => {
                           {profit && "+"}
                           {row.price_change_percentage_24h.toFixed(2)}%
                         </TableCell>
-                        <TableCell>
-                          {symbol}{" "}
+                        <TableCell align="right">
+                          {symbol}
                           {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
                           )}
-                          M
                         </TableCell>
                       </TableRow>
                     );
