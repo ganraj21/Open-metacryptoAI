@@ -48,7 +48,7 @@ const Header = () => {
               className={classes.title}
               variant="h6"
             >
-              Crypto Hunter
+              Open Meta crypto
             </Typography>
 
             <Select

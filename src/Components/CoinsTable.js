@@ -48,7 +48,7 @@ const CoinsTable = () => {
     setCoins(data);
     setLoading(false);
   };
-  var flag = true;
+
   useEffect(() => {
     fetchCoins();
     // its fetching the coins
@@ -183,6 +183,7 @@ const CoinsTable = () => {
                           {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
                           )}
+                          M
                         </TableCell>
                       </TableRow>
                     );
