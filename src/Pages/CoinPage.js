@@ -71,7 +71,7 @@ const CoinPage = () => {
         flexDirection: "column",
         alignItems: "center",
       },
-      [theme.breakpoints.down("sm")]: {
+      [theme.breakpoints.down("xs")]: {
         alignItems: "start",
       },
     },
@@ -94,7 +94,7 @@ const CoinPage = () => {
           {coin?.name}
         </Typography>
         <Typography variant="subtitle1" classes={classes.description}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}
+          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
         </Typography>
 
         <div className={classes.marketData}>
