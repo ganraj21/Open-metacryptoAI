@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CryptoState } from "../CryptoContext";
 import { HistoricalChart } from "../config/api";
+import { chartDays } from "../config/data";
 import {
   CircularProgress,
   createTheme,
@@ -11,6 +12,7 @@ import {
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
+import SelectButton from "./SelectButton";
 
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
@@ -100,6 +102,24 @@ const CoinInfo = ({ coin }) => {
                   },
                 }}
               />
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: 20,
+                  justifyContent: "space-around",
+                  width: "100%",
+                }}
+              >
+                {chartDays.map((day) => (
+                  <SelectButton
+                    key={day.value}
+                    onClick={() => setDays(day.value)}
+                    selected={day.value === days}
+                  >
+                    {day.label}
+                  </SelectButton>
+                ))}
+              </div>
             </>
           )}
 
