@@ -25,13 +25,11 @@ export function numberWithCommas(x) {
 }
 
 const CoinsTable = () => {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
-  const { currency, symbol } = CryptoState();
+  const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
   const darkTheme = createTheme({
     palette: {
@@ -41,15 +39,6 @@ const CoinsTable = () => {
       type: "dark",
     },
   });
-
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-    console.log(data);
-
-    setCoins(data);
-    setLoading(false);
-  };
 
   useEffect(() => {
     fetchCoins();
