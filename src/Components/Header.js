@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
+import AuthModal from "./Authentication/AuthModal";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -52,18 +53,17 @@ const Header = () => {
             </Typography>
 
             <Select
-              varient="outlined"
-              style={{
-                width: 100,
-                height: 40,
-                marginRight: 15,
-              }}
+              variant="outlined"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              style={{ width: 100, height: 40, marginLeft: 15 }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
               <MenuItem value={"INR"}>INR</MenuItem>
               <MenuItem value={"USD"}>USD</MenuItem>
             </Select>
+            <AuthModal />
           </Toolbar>
         </Container>
       </AppBar>
