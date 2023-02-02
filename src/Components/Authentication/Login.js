@@ -26,7 +26,6 @@ const Login = ({ handleclose }) => {
         message: `Login Successful. Welcome ${result.user.email}`,
         type: "success",
       });
-
       handleclose();
     } catch (error) {
       setAlert({
