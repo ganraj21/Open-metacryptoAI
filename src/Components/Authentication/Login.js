@@ -1,18 +1,37 @@
 import React, { useState } from "react";
 import { Box, Button, TextField } from "@material-ui/core";
 import { CryptoState } from "../../CryptoContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
-const Login = (handleclose) => {
+const Login = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const { setAlert } = CryptoState();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!email || !password) {
       setAlert({
         open: true,
         message: "Please fill all the Fields",
+        type: "error",
+      });
+    }
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log(result);
+      setAlert({
+        open: true,
+        message: `Login Successful. Welcome ${result.user.email}`,
+        type: "success",
+      });
+
+      handleclose();
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: error.message,
         type: "error",
       });
     }
@@ -44,7 +63,7 @@ const Login = (handleclose) => {
         style={{ backgroundColor: "#EEBC1D" }}
         onClick={handleSubmit}
       >
-        Sign Up
+        Login
       </Button>
     </Box>
   );
