@@ -17,7 +17,7 @@ import SelectButton from "./SelectButton";
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-  const { currency } = CryptoState();
+  const { currency, coins } = CryptoState();
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -70,6 +70,9 @@ const CoinInfo = ({ coin }) => {
     },
   });
 
+  const profit = coin.market_data.price_change_24h > 0;
+  console.log(coin.market_data.price_change_24h);
+
   return (
     <>
       <ThemeProvider theme={darkTheme}>
@@ -79,7 +82,7 @@ const CoinInfo = ({ coin }) => {
           {!historicData ? (
             <CircularProgress
               style={{ color: "gold" }}
-              size={250}
+              size={150}
               thikness={1}
             />
           ) : (
@@ -100,7 +103,7 @@ const CoinInfo = ({ coin }) => {
                     {
                       data: historicData.map((coin) => coin[1]),
                       label: `Past(Past ${days} Days) in ${currency}`,
-                      borderColor: "#EEBC1D",
+                      borderColor: profit ? "#16c784" : "#ea3943",
                     },
                   ],
                 }}
