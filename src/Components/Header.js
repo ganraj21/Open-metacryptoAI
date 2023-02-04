@@ -50,7 +50,7 @@ const Header = () => {
               className={classes.title}
               variant="h6"
             >
-              Open Meta crypto
+              MetaCrypto
             </Typography>
 
             <Select

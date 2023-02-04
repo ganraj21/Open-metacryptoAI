@@ -56,10 +56,7 @@ const CoinPage = () => {
     description: {
       width: "100%",
       fontFamily: "Montserrat",
-      padding: 25,
-      paddingBottom: 15,
-      paddingTop: 0,
-      textAlign: "justify",
+      textAlign: "left",
     },
     marketData: {
       alignSelf: "start",
@@ -137,13 +134,17 @@ const CoinPage = () => {
         <img
           src={coin?.image.large}
           alt={coin?.name}
-          height="200"
+          height="150"
           style={{ marginBottom: 20 }}
         />
         <Typography variant="h3" className={classes.heading}>
           {coin?.name}
         </Typography>
-        <Typography variant="subtitle1" classes={classes.description}>
+        <Typography
+          variant="subtitle1"
+          classes={classes.description}
+          style={{ padding: "25px" }}
+        >
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
         </Typography>
 
@@ -191,6 +192,7 @@ const CoinPage = () => {
                 width: "100%",
                 height: 40,
                 backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
+                color: inWatchlist ? "#fff" : "#000",
               }}
               onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
             >

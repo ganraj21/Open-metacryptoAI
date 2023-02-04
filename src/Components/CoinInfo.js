@@ -17,7 +17,6 @@ import SelectButton from "./SelectButton";
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-
   const { currency } = CryptoState();
 
   const useStyles = makeStyles((theme) => ({
@@ -34,6 +33,17 @@ const CoinInfo = ({ coin }) => {
         marginTop: 0,
         padding: 20,
         paddingTop: 0,
+      },
+    },
+    chart_btns: {
+      display: "flex",
+      marginTop: 20,
+      justifyContent: "space-around",
+      width: "100%",
+      [theme.breakpoints.down("sm")]: {
+        display: "grid",
+        gridAutoFlow: "column dense",
+        gridTemplateRows: "50px 50px",
       },
     },
   }));
@@ -102,14 +112,7 @@ const CoinInfo = ({ coin }) => {
                   },
                 }}
               />
-              <div
-                style={{
-                  display: "flex",
-                  marginTop: 20,
-                  justifyContent: "space-around",
-                  width: "100%",
-                }}
-              >
+              <div className={classes.chart_btns}>
                 {chartDays.map((day) => (
                   <SelectButton
                     key={day.value}

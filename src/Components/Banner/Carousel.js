@@ -19,6 +19,20 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     textTransform: "uppercase",
     color: "white",
+    background: "#5e5e5e6e",
+    padding: "10px",
+    borderRadius: "6px",
+    width: "250px",
+    height: "180px",
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      width: "165px",
+      height: "174px",
+      padding: "10px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
 }));
 

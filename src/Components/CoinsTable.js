@@ -58,7 +58,7 @@ const CoinsTable = () => {
     }
   };
 
-  const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles((theme) => ({
     row: {
       backgroundColor: "#16171a",
       cursor: "pointer",
@@ -70,6 +70,9 @@ const CoinsTable = () => {
     pagination: {
       "& .MuiPaginationItem-root": {
         color: "gold",
+        [theme.breakpoints.down("sm")]: {
+          padding: "15px 3px 16px 3px",
+        },
       },
     },
   }));
