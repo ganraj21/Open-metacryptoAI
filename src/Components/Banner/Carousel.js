@@ -78,7 +78,7 @@ const Carousel = () => {
           <span
             style={{
               color: profit > 0 ? "rgb(14,203,129)" : "red",
-              fontWeight: 500,
+              fontWeight: 600,
             }}
           >
             {profit > 0 ? "+" : " "}
@@ -103,18 +103,19 @@ const Carousel = () => {
   };
   return (
     <>
-      <div className={classes.carousel}></div>
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1500}
-        disableDotsControls
-        disableButtonsControls
-        responsive={responsive}
-        autoPlay
-        items={items}
-      />
+      <div className={classes.carousel}>
+        <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlayInterval={1000}
+          animationDuration={1500}
+          disableDotsControls
+          disableButtonsControls
+          responsive={responsive}
+          autoPlay
+          items={items}
+        />
+      </div>
     </>
   );
 };

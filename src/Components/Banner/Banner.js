@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     textAlign: "center",
   },
+  tagline_t: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2.75rem",
+    },
+  },
   carousel: {
     height: "50%",
     display: "flex",
@@ -39,10 +44,12 @@ function Banner() {
             style={{
               fontWeight: "bold",
               marginBottom: 15,
-              fontFamily: "Montserrat",
+              fontFamily:
+                "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
             }}
+            className={classes.tagline_t}
           >
-            Crypto Hunter
+            Open Meta CryptoAI
           </Typography>
           <Typography
             variant="subtitle2"

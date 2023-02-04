@@ -11,6 +11,7 @@ import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { async } from "@firebase/util";
+
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();

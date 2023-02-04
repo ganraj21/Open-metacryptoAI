@@ -16,10 +16,16 @@ import AuthModal from "./Authentication/AuthModal";
 import UserSidebar from "./Authentication/UserSidebar";
 
 const useStyles = makeStyles(() => ({
+  app_bar: {
+    height: "67px",
+    backdropFilter: "blur(1px)",
+  },
   title: {
     flex: 1,
     color: "gold",
-    fontFamily: "Montserrat",
+    fontFamily:
+      "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
+
     fontWeight: "bold",
     cursor: "pointer",
   },
@@ -42,7 +48,7 @@ const Header = () => {
   });
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color="transparent" position="static">
+      <AppBar color="transparent" position="static" className={classes.app_bar}>
         <Container>
           <Toolbar>
             <Typography

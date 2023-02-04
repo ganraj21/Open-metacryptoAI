@@ -10,6 +10,8 @@ import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
 
+const font_fs =
+  "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 const useStyles = makeStyles({
   container: {
     width: 350,
@@ -17,7 +19,7 @@ const useStyles = makeStyles({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    fontFamily: "monospace",
+    fontFamily: font_fs,
   },
   profile: {
     flex: 1,
@@ -39,6 +41,7 @@ const useStyles = makeStyles({
     width: "100%",
     backgroundColor: "#EEBC1D",
     marginTop: 20,
+    fontFamily: font_fs,
   },
   watchlist: {
     flex: 1,
@@ -52,6 +55,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: 12,
     overflowY: "scroll",
+    fontFamily: font_fs,
   },
   coin: {
     padding: 10,

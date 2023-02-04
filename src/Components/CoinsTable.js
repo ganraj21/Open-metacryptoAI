@@ -28,6 +28,8 @@ const CoinsTable = () => {
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const fontfs =
+    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
@@ -65,7 +67,7 @@ const CoinsTable = () => {
       "&:hover": {
         backgroundColor: "#131111",
       },
-      fontFamily: "Montserrat",
+      fontFamily: fontfs,
     },
     pagination: {
       "& .MuiPaginationItem-root": {
@@ -75,6 +77,10 @@ const CoinsTable = () => {
         },
       },
     },
+    table_cell: {
+      fontFamily:
+        "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
+    },
   }));
 
   const classes = useStyles();
@@ -83,10 +89,7 @@ const CoinsTable = () => {
     <>
       <ThemeProvider theme={darkTheme}>
         <Container style={{ textAlign: "center" }}>
-          <Typography
-            variant="h4"
-            style={{ margin: 18, fontFamily: "Montserrat" }}
-          >
+          <Typography variant="h4" style={{ margin: 18, fontFamily: fontfs }}>
             Cryptocurrency Prices by Market Cap
           </Typography>
 
@@ -107,10 +110,10 @@ const CoinsTable = () => {
                     {["Coin", "Price", "24h Change", "Market Cap"].map(
                       (head) => (
                         <TableCell
+                          className={classes.table_cell}
                           style={{
                             color: "black",
                             fontWeight: "700",
-                            fontFamily: "Montserrat",
                           }}
                           key={head}
                           align={head === "Coin" ? "" : "right"}
@@ -133,6 +136,7 @@ const CoinsTable = () => {
                           key={row.name}
                         >
                           <TableCell
+                            className={classes.table_cell}
                             component="th"
                             scope="coin"
                             style={{
@@ -165,11 +169,15 @@ const CoinsTable = () => {
                               </span>
                             </div>
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell
+                            align="right"
+                            className={classes.table_cell}
+                          >
                             {symbol}
                             {numberWithCommas(row.current_price.toFixed(2))}
                           </TableCell>
                           <TableCell
+                            className={classes.table_cell}
                             align="right"
                             style={{
                               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
@@ -179,7 +187,10 @@ const CoinsTable = () => {
                             {profit && "+"}
                             {row.price_change_percentage_24h.toFixed(2)}%
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell
+                            align="right"
+                            className={classes.table_cell}
+                          >
                             {symbol}
                             {numberWithCommas(
                               row.market_cap.toString().slice(0, -6)

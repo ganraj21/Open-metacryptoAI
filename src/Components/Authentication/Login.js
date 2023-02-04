@@ -38,7 +38,13 @@ const Login = ({ handleclose }) => {
   return (
     <Box
       p={3}
-      style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        fontFamily:
+          "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
+      }}
     >
       <TextField
         variant="outlined"
