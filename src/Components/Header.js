@@ -20,14 +20,15 @@ const useStyles = makeStyles(() => ({
     height: "67px",
     backdropFilter: "blur(1px)",
     background: "#5D357D",
+    position: "fixed",
   },
   title: {
     flex: 1,
-    color: "gold",
+    fontSize: "24px",
+    color: "#fff",
     fontFamily:
       "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
 
-    fontWeight: "bold",
     cursor: "pointer",
   },
 }));
@@ -64,7 +65,7 @@ const Header = () => {
               variant="outlined"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              style={{ width: 100, height: 40, marginLeft: 15 }}
+              style={{ width: 100, height: 40, marginLeft: 15, color: "#fff" }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >

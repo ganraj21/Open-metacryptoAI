@@ -38,7 +38,7 @@ const CoinsTable = () => {
       primary: {
         main: "#fff",
       },
-      type: "light",
+      type: "dark",
     },
   });
 
@@ -88,7 +88,7 @@ const CoinsTable = () => {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <Container style={{ textAlign: "center" }}>
+        <Container style={{ textAlign: "center" }} id="cryptoinfo">
           <Typography variant="h4" style={{ margin: 18, fontFamily: fontfs }}>
             Cryptocurrency Prices by Market Cap
           </Typography>
@@ -181,7 +181,7 @@ const CoinsTable = () => {
                             align="right"
                             style={{
                               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-                              fontWeight: 500,
+                              fontWeight: 600,
                             }}
                           >
                             {profit && "+"}
