@@ -10,7 +10,6 @@ import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { async } from "@firebase/util";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -33,6 +32,7 @@ const CoinPage = () => {
   const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",
+      background: "#151829",
       [theme.breakpoints.down("md")]: {
         flexDirection: "column",
         alignItems: "center",

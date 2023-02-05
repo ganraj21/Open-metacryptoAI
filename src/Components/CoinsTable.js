@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import {
@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CoinList } from "../config/api";
+// import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import { Pagination } from "@material-ui/lab";
 
@@ -38,7 +38,7 @@ const CoinsTable = () => {
       primary: {
         main: "#fff",
       },
-      type: "dark",
+      type: "light",
     },
   });
 

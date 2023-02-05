@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
   app_bar: {
     height: "67px",
     backdropFilter: "blur(1px)",
+    background: "#5D357D",
   },
   title: {
     flex: 1,

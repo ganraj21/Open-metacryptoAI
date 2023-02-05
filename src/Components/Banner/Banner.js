@@ -1,24 +1,27 @@
-import { Container, makeStyles, Typography } from "@material-ui/core";
+import { Button, Container, makeStyles, Typography } from "@material-ui/core";
 import Carousel from "./Carousel";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    // backgroundImage: "url(./banner2.jpg)",
+    backgroundImage: "url(./banner2.jpg)",
     backgroundColor: "hsl(259, 20%, 18%)",
   },
   bannerContent: {
-    height: 400,
+    height: 500,
     display: "flex",
     flexDirection: "column",
     paddingTop: 25,
     justifyContent: "space-around",
   },
   tagline: {
+    paddingTop: "20px",
     display: "flex",
     height: "40%",
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center",
+    alignItems: "center",
   },
   tagline_t: {
     [theme.breakpoints.down("sm")]: {
@@ -29,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     display: "flex",
     alignItems: "center",
+  },
+  start_btn: {
+    margin: "20px 0 0 0",
+    gap: "10px",
+    height: "45px",
+    background: "gold",
   },
 }));
 
@@ -61,6 +70,13 @@ function Banner() {
           >
             Get all the Info regarding your favorite Crypto Currency
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.start_btn}
+          >
+            Gets Started <ArrowForwardIcon />
+          </Button>
         </div>
         <Carousel />
       </Container>
