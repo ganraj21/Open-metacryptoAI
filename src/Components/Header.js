@@ -18,8 +18,8 @@ import UserSidebar from "./Authentication/UserSidebar";
 const useStyles = makeStyles((theme) => ({
   app_bar: {
     height: "67px",
-    backdropFilter: "blur(1px)",
-    background: "#5D357D",
+    background: "#9641da78",
+    backdropFilter: "blur(11px)",
     position: "sticky",
     top: 0,
     [theme.breakpoints.down("sm")]: {

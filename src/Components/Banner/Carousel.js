@@ -8,12 +8,12 @@ import { CryptoState } from "../../CryptoContext";
 
 const useStyles = makeStyles((theme) => ({
   carousel: {
-    height: "50%",
+    paddingBottom: "88px",
     display: "flex",
     alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       height: "40%",
-      marginTop: "60px",
+      marginTop: "48px",
     },
   },
   carouselItem: {
@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     textTransform: "uppercase",
     color: "white",
-    background: "#5e5e5e6e",
+    background: "#6060606e",
+    backdropFilter: "blur(13px)",
     padding: "10px",
     borderRadius: "6px",
     width: "250px",

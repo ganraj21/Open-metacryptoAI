@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   tagline: {
     paddingTop: "20px",
     display: "flex",
-    height: "40%",
+    height: "60%",
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   tagline_t: {
     [theme.breakpoints.down("sm")]: {
       fontSize: "2.75rem",
-      padding: "88px 0 0 0",
+      padding: "48px 0 0 0",
     },
   },
   subtitle: {
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: { padding: "15px" },
   },
   carousel: {
-    height: "50%",
+    height: "60%",
     display: "flex",
     alignItems: "center",
   },
