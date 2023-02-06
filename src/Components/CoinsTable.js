@@ -88,12 +88,13 @@ const CoinsTable = () => {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <Container style={{ textAlign: "center" }} id="cryptoinfo">
+        <Container style={{ textAlign: "center" }}>
           <Typography variant="h4" style={{ margin: 18, fontFamily: fontfs }}>
             Cryptocurrency Prices by Market Cap
           </Typography>
 
           <TextField
+            id="cryptoinfo"
             label="Search For a Crypto Currency.."
             variant="outlined"
             style={{ marginBottom: 20, width: "100%" }}

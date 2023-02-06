@@ -15,12 +15,16 @@ import { CryptoState } from "../CryptoContext";
 import AuthModal from "./Authentication/AuthModal";
 import UserSidebar from "./Authentication/UserSidebar";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   app_bar: {
     height: "67px",
     backdropFilter: "blur(1px)",
     background: "#5D357D",
-    position: "fixed",
+    position: "sticky",
+    top: 0,
+    [theme.breakpoints.down("sm")]: {
+      padding: "5px",
+    },
   },
   title: {
     flex: 1,

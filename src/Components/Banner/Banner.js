@@ -12,13 +12,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
   },
   bannerContent: {
-    height: 600,
+    height: 650,
     display: "flex",
     flexDirection: "column",
-    paddingTop: 115,
+    paddingTop: "66px 0 66px 0",
     justifyContent: "space-around",
     [theme.breakpoints.down("sm")]: {
-      height: "600px",
+      height: "590px",
+      padding: "19px 0 0 0",
     },
   },
   tagline: {
@@ -46,15 +47,13 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     display: "flex",
     alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      height: "40%",
-    },
   },
   start_btn: {
     margin: "20px 0 0 0",
     gap: "10px",
     height: "45px",
     background: "gold",
+    color: "#000",
   },
 }));
 

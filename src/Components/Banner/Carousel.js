@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     display: "flex",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      height: "40%",
+      marginTop: "60px",
+    },
   },
   carouselItem: {
     display: "flex",
