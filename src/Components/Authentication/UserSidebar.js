@@ -20,6 +20,8 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     fontFamily: font_fs,
+    background: "#2685d885",
+    backdropFilter: "blur(11px)",
   },
   profile: {
     flex: 1,
@@ -46,7 +48,7 @@ const useStyles = makeStyles({
   watchlist: {
     flex: 1,
     width: "100%",
-    backgroundColor: "grey",
+    backgroundColor: "#e2e2e270",
     borderRadius: 10,
     padding: 15,
     paddingTop: 10,
@@ -65,8 +67,8 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#EEBC1D",
-    boxShadow: "0 0 3px black",
+    backgroundColor: "#d3c5a270",
+    backdropFilter: "blur(11px)",
   },
 });
 
@@ -125,8 +127,10 @@ export default function UserSidebar() {
     }
   };
 
+  console.log(coins);
   return (
     <div>
+      <div>{<i class="fas fa-regular fa-angle-left"></i>}</div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Avatar
@@ -170,17 +174,29 @@ export default function UserSidebar() {
                   </span>
                   {coins.map((coin) => {
                     if (watchlist.includes(coin.id))
+                      // console.log(coin.price_change_24h);
                       return (
                         <div className={classes.coin}>
                           <span>{coin.name}</span>
-                          <span style={{ display: "flex", gap: 8 }}>
+                          <span
+                            style={{
+                              display: "flex",
+                              gap: 8,
+                              color:
+                                coin.price_change_24h > 0
+                                  ? "#02a100"
+                                  : "#d8252f",
+                            }}
+                          >
                             {symbol}
                             {numberWithCommas(coin.current_price.toFixed(2))}
-                            <AiFillDelete
-                              style={{ cursor: "pointer" }}
-                              fontSize="16"
-                              onClick={() => removeFromWatchlist(coin)}
-                            />
+                            <span>
+                              <AiFillDelete
+                                style={{ cursor: "pointer" }}
+                                fontSize="16"
+                                onClick={() => removeFromWatchlist(coin)}
+                              />
+                            </span>
                           </span>
                         </div>
                       );

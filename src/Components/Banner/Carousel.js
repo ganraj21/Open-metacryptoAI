@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     textTransform: "uppercase",
     color: "white",
-    background: "#6060606e",
+    background: "#a5a5a540",
     backdropFilter: "blur(13px)",
     padding: "10px",
     borderRadius: "6px",
