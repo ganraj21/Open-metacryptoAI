@@ -39,14 +39,7 @@ const Header = () => {
   const { currency, setCurrency, user } = CryptoState();
 
   console.log(currency);
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
+  const darkTheme = createTheme({ palette: { mode: "dark" } });
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="transparent" position="static" className={classes.app_bar}>

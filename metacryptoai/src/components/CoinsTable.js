@@ -30,14 +30,7 @@ const CoinsTable = () => {
 
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
+  const darkTheme = createTheme({ palette: { mode: "dark" } });
 
   useEffect(() => {
     fetchCoins();
