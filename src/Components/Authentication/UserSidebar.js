@@ -127,7 +127,7 @@ export default function UserSidebar() {
     }
   };
 
-  console.log(coins);
+  // console.log(coins);
   return (
     <div>
       <div>{<i class="fas fa-regular fa-angle-left"></i>}</div>
@@ -173,8 +173,9 @@ export default function UserSidebar() {
                     WatchList
                   </span>
                   {coins.map((coin) => {
-                    if (watchlist.includes(coin.id))
-                      console.log(coin.price_change_24h);
+                    // console.log(coin.id.price_change_24h);
+                    if (watchlist.includes(coin.id)) {
+                      console.log(coin.id.price_change_24h);
                       return (
                         <div className={classes.coin}>
                           <span>{coin.name}</span>
@@ -183,7 +184,7 @@ export default function UserSidebar() {
                               display: "flex",
                               gap: 8,
                               color:
-                                coin.price_change_24h > 0
+                                coin.id.price_change_24h > 0
                                   ? "#02a100"
                                   : "#d8252f",
                             }}
@@ -200,6 +201,7 @@ export default function UserSidebar() {
                           </span>
                         </div>
                       );
+                    }
                   })}
                 </div>
               </div>
