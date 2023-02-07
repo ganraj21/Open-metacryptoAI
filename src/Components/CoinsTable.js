@@ -1,6 +1,5 @@
 // import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
 import {
   Container,
   createTheme,
@@ -8,17 +7,18 @@ import {
   ThemeProvider,
   Typography,
   TextField,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableContainer,
-  Table,
 } from "@material-ui/core";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import { Pagination } from "@material-ui/lab";
+import Pagination from "@mui/material/Pagination";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

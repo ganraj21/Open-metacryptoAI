@@ -17,7 +17,7 @@ import SelectButton from "./SelectButton";
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-  const { currency, coins } = CryptoState();
+  const { currency } = CryptoState();
 
   const useStyles = makeStyles((theme) => ({
     container: {
