@@ -1,4 +1,7 @@
-import { Button, Container, makeStyles, Typography } from "@material-ui/core";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "tss-react/mui";
 import Carousel from "./Carousel";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { HashLink } from "react-router-hash-link";

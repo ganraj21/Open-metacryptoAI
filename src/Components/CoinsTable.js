@@ -1,24 +1,21 @@
 // import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
-import {
-  Container,
-  createTheme,
-  LinearProgress,
-  ThemeProvider,
-  Typography,
-  TextField,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableContainer,
-  Table,
-} from "@material-ui/core";
+import { makeStyles } from "tss-react/mui";
+import LinearProgress from "@mui/material/LinearProgress";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Container from "@mui/material/Container";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import Pagination from "@material-ui/lab/Pagination";
+import Pagination from "@mui/material/Pagination";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -33,14 +30,7 @@ const CoinsTable = () => {
 
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
+  const darkTheme = createTheme({ palette: { mode: "dark" } });
 
   useEffect(() => {
     fetchCoins();

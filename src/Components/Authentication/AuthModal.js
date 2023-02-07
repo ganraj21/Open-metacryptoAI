@@ -1,9 +1,15 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import { AppBar, Box, Button, Tab, Tabs } from "@material-ui/core";
+import { makeStyles } from "tss-react/mui";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import { styled, alpha } from "@mui/material/styles";
 import Login from "./Login";
 import Signup from "./Signup";
 import GoogleButton from "react-google-button";
@@ -11,31 +17,27 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { CryptoState } from "../../CryptoContext";
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    color: "white",
-    borderRadius: 10,
-  },
-  google: {
-    padding: 24,
-    paddingTop: 0,
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
-    gap: 20,
-    fontSize: 18,
-  },
-}));
-
+const m_style = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+const paper_s = {
+  width: 400,
+  // backgroundColor: theme.palette.background.paper,
+  color: "white",
+  borderRadius: 10,
+};
+const google_s = {
+  padding: 24,
+  paddingTop: 0,
+  display: "flex",
+  flexDirection: "column",
+  textAlign: "center",
+  gap: 20,
+  fontSize: 18,
+};
 export default function AuthModal() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const { setAlert } = CryptoState();
@@ -43,7 +45,7 @@ export default function AuthModal() {
   const handleOpen = () => {
     setOpen(true);
   };
-
+  const darkTheme = createTheme({ palette: { mode: "dark" } });
   const handleClose = () => {
     setOpen(false);
   };
@@ -88,7 +90,7 @@ export default function AuthModal() {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        className={classes.modal}
+        // className={classes.modal}
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -96,9 +98,10 @@ export default function AuthModal() {
         BackdropProps={{
           timeout: 500,
         }}
+        sx={m_style}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
+          <div sx={paper_s}>
             <AppBar
               position="static"
               style={{ backgroundColor: "transparent", color: "white" }}
@@ -115,10 +118,10 @@ export default function AuthModal() {
             </AppBar>
             {value === 0 && <Login handleclose={handleClose} />}
             {value === 1 && <Signup handleclose={handleClose} />}
-            <Box className={classes.google}>
+            <Box sx={google_s}>
               <span>OR</span>
               <GoogleButton
-                style={{ width: "100%", outline: "none" }}
+                sx={{ width: "100%", outline: "none" }}
                 onClick={signInWithGoogle}
               />
             </Box>

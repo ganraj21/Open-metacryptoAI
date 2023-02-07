@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "tss-react/mui";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
 import { CryptoState } from "../../CryptoContext";
-import { Avatar } from "@material-ui/core";
+import Avatar from "@mui/material/Avatar";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { numberWithCommas } from "../CoinsTable";

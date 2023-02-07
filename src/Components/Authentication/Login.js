@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Box, Button, TextField } from "@material-ui/core";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
