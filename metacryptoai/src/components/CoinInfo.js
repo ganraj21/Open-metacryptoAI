@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import { CryptoState } from "../CryptoContext";
 import { HistoricalChart } from "../config/api";
 import { chartDays } from "../config/data";
-import {
-  CircularProgress,
-  createTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
+import { makeStyles } from "tss-react/mui";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";

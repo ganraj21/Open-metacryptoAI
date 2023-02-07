@@ -1,9 +1,13 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import { AppBar, Box, Button, Tab, Tabs } from "@material-ui/core";
+import { makeStyles } from "tss-react/mui";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 import Login from "./Login";
 import Signup from "./Signup";
 import GoogleButton from "react-google-button";

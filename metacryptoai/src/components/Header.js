@@ -1,14 +1,9 @@
-import {
-  AppBar,
-  Container,
-  createTheme,
-  makeStyles,
-  MenuItem,
-  Select,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { MenuItem, Toolbar, Select } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { makeStyles } from "tss-react/mui";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import AppBar from "@mui/material/AppBar";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";

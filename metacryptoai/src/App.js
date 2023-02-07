@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "tss-react/mui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Alerts from "./Components/Alerts";

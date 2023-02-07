@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "tss-react/mui";
 import React from "react";
 
 const SelectButton = ({ children, selected, onClick }) => {
