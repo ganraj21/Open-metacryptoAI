@@ -1,7 +1,7 @@
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { makeStyles } from "tss-react/mui";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import "./CoinPage.css";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -31,51 +32,7 @@ const CoinPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      display: "flex",
-      background: "#151829",
-      [theme.breakpoints.down("md")]: {
-        flexDirection: "column",
-        alignItems: "center",
-      },
-    },
-    sidebar: {
-      width: "30%",
-      [theme.breakpoints.down("md")]: {
-        width: "100%",
-      },
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      marginTop: 25,
-      borderRight: "2px solid grey",
-    },
-    heading: {
-      fontWeight: "bold",
-      marginBottom: 20,
-      fontFamily: "Montserrat",
-    },
-    description: {
-      width: "100%",
-      fontFamily: "Montserrat",
-      textAlign: "left",
-    },
-    marketData: {
-      alignSelf: "start",
-      padding: 25,
-      paddingTop: 10,
-      width: "100%",
-      [theme.breakpoints.down("md")]: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      },
-      [theme.breakpoints.down("xs")]: {
-        alignItems: "start",
-      },
-    },
-  }));
+  const useStyles = makeStyles((theme) => ({}));
   const classes = useStyles();
 
   if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
@@ -131,8 +88,8 @@ const CoinPage = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.sidebar}>
+    <div className="container">
+      <div className="sidebar">
         {/* sidebar */}
         <img
           src={coin?.image.large}
@@ -140,7 +97,7 @@ const CoinPage = () => {
           height="150"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className={classes.heading}>
+        <Typography variant="h3" className="heading">
           {coin?.name}
         </Typography>
         <Typography

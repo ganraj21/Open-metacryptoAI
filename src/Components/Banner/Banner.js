@@ -5,15 +5,8 @@ import { makeStyles } from "tss-react/mui";
 import Carousel from "./Carousel";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { HashLink } from "react-router-hash-link";
+import "../styles/Banner.css";
 const useStyles = makeStyles((theme) => ({
-  banner: {
-    backgroundImage: "url(./banner2.jpg)",
-    backgroundColor: "hsl(259, 20%, 18%)",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-  },
   bannerContent: {
     height: 650,
     display: "flex",
@@ -64,7 +57,7 @@ function Banner() {
   const classes = useStyles();
 
   return (
-    <div className={classes.banner}>
+    <div className="banner">
       <Container className={classes.bannerContent}>
         <div className={classes.tagline}>
           <Typography

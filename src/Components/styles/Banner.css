@@ -1,0 +1,8 @@
+.banner {
+  background-image: url("../../../public/banner2.jpg");
+  background-color: hsl(259 20% 18%);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

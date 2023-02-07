@@ -1,4 +1,3 @@
-import { makeStyles } from "tss-react/mui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Alerts from "./Components/Alerts";
@@ -6,20 +5,15 @@ import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
 
-const useStyles = makeStyles(() => ({
-  App: {
-    background: "#232629",
-    color: "white",
-    minHeight: "100vh",
-  },
-}));
-
+const aap = {
+  background: "#232629",
+  color: "white",
+  minHeight: "100vh",
+};
 function App() {
-  const classes = useStyles();
-
   return (
     <BrowserRouter>
-      <div className={classes.App}>
+      <div sx={aap}>
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />

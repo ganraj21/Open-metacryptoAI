@@ -1,5 +1,4 @@
 // import axios from "axios";
-import { makeStyles } from "tss-react/mui";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -16,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 // import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import Pagination from "@mui/material/Pagination";
+import "./styles/CoinTable.css";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -50,36 +50,11 @@ const CoinsTable = () => {
     }
   };
 
-  const useStyles = makeStyles((theme) => ({
-    row: {
-      backgroundColor: "#16171a",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#131111",
-      },
-      fontFamily: fontfs,
-    },
-    pagination: {
-      "& .MuiPaginationItem-root": {
-        color: "gold",
-        [theme.breakpoints.down("sm")]: {
-          padding: "15px 3px 16px 3px",
-        },
-      },
-    },
-    table_cell: {
-      fontFamily:
-        "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
-    },
-  }));
-
-  const classes = useStyles();
-
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <Container style={{ textAlign: "center" }}>
-          <Typography variant="h4" style={{ margin: 18, fontFamily: fontfs }}>
+        <Container sx={{ textAlign: "center" }}>
+          <Typography variant="h4" sx={{ margin: 18, fontFamily: fontfs }}>
             Cryptocurrency Prices by Market Cap
           </Typography>
 
@@ -87,22 +62,22 @@ const CoinsTable = () => {
             id="cryptoinfo"
             label="Search For a Crypto Currency.."
             variant="outlined"
-            style={{ marginBottom: 20, width: "100%" }}
+            sx={{ marginBottom: 20, width: "100%" }}
             onChange={(e) => setSearch(e.target.value)}
           ></TextField>
 
           <TableContainer>
             {loading ? (
-              <LinearProgress style={{ backgroundColor: "gold" }} />
+              <LinearProgress sx={{ backgroundColor: "gold" }} />
             ) : (
               <Table aria-label="simple table">
-                <TableHead style={{ backgroundColor: "#EEBC1D" }}>
+                <TableHead sx={{ backgroundColor: "#EEBC1D" }}>
                   <TableRow>
                     {["Coin", "Price", "24h Change", "Market Cap"].map(
                       (head) => (
                         <TableCell
-                          className={classes.table_cell}
-                          style={{
+                          className="table_cell"
+                          sx={{
                             color: "black",
                             fontWeight: "700",
                           }}
@@ -123,14 +98,14 @@ const CoinsTable = () => {
                       return (
                         <TableRow
                           onClick={() => navigate(`/coins/${row.id}`)}
-                          className={classes.coin}
+                          // className={classes.coin}
                           key={row.name}
                         >
                           <TableCell
-                            className={classes.table_cell}
+                            className="table_cell"
                             component="th"
                             scope="coin"
-                            style={{
+                            sx={{
                               display: "flex",
                               gap: 15,
                             }}
@@ -139,38 +114,33 @@ const CoinsTable = () => {
                               src={row?.image}
                               alt={row.name}
                               height="50"
-                              style={{ marginBottom: 10 }}
+                              sx={{ marginBottom: 10 }}
                             />
                             <div
-                              style={{
+                              sx={{
                                 display: "flex",
                                 flexDirection: "column",
                               }}
                             >
                               <span
-                                style={{
+                                sx={{
                                   textTransform: "uppercase",
                                   fontSize: 22,
                                 }}
                               >
                                 {row.symbol}
                               </span>
-                              <span style={{ color: "darkgrey" }}>
-                                {row.name}
-                              </span>
+                              <span sx={{ color: "darkgrey" }}>{row.name}</span>
                             </div>
                           </TableCell>
-                          <TableCell
-                            align="right"
-                            className={classes.table_cell}
-                          >
+                          <TableCell align="right" className="table_cell">
                             {symbol}
                             {numberWithCommas(row.current_price.toFixed(2))}
                           </TableCell>
                           <TableCell
-                            className={classes.table_cell}
+                            className="table_cell"
                             align="right"
-                            style={{
+                            sx={{
                               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                               fontWeight: 600,
                             }}
@@ -178,10 +148,7 @@ const CoinsTable = () => {
                             {profit && "+"}
                             {row.price_change_percentage_24h.toFixed(2)}%
                           </TableCell>
-                          <TableCell
-                            align="right"
-                            className={classes.table_cell}
-                          >
+                          <TableCell align="right" className="table_cell">
                             {symbol}
                             {numberWithCommas(
                               row.market_cap.toString().slice(0, -6)
@@ -197,13 +164,13 @@ const CoinsTable = () => {
           </TableContainer>
           <Pagination
             count={(handleSearch()?.length / 10).toFixed(0)}
-            style={{
+            sx={{
               padding: 20,
               width: "100%",
               display: "flex",
               justifyContent: "center",
             }}
-            classes={{ ul: classes.pagination }}
+            className=" pagination "
             onChange={(_, value) => {
               setPage(value);
               window.scroll(0, 450);

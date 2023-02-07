@@ -5,47 +5,17 @@ import { HistoricalChart } from "../config/api";
 import { chartDays } from "../config/data";
 import { ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
-import { makeStyles } from "tss-react/mui";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import SelectButton from "./SelectButton";
-import { createTheme, adaptV4Theme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import "./styles/CoinInfo.css";
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
   const { currency } = CryptoState();
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      width: "75%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: 25,
-      padding: 40,
-      [theme.breakpoints.down("md")]: {
-        width: "100%",
-        marginTop: 0,
-        padding: 20,
-        paddingTop: 0,
-      },
-    },
-    chart_btns: {
-      display: "flex",
-      marginTop: 20,
-      justifyContent: "space-around",
-      width: "100%",
-      [theme.breakpoints.down("sm")]: {
-        display: "grid",
-        gridAutoFlow: "column dense",
-        gridTemplateRows: "50px 50px",
-      },
-    },
-  }));
-
-  const classes = useStyles();
   Chart.register(CategoryScale);
   const fetchHistoricalData = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
@@ -66,15 +36,11 @@ const CoinInfo = ({ coin }) => {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
-        <div className={classes.container}>
+        <div className="coin_info_container">
           {/* chart */}
 
           {!historicData ? (
-            <CircularProgress
-              style={{ color: "gold" }}
-              size={150}
-              thikness={1}
-            />
+            <CircularProgress sx={{ color: "gold" }} size={150} thikness={1} />
           ) : (
             <>
               <Line
@@ -105,7 +71,7 @@ const CoinInfo = ({ coin }) => {
                   },
                 }}
               />
-              <div className={classes.chart_btns}>
+              <div className="chart_btns">
                 {chartDays.map((day) => (
                   <SelectButton
                     key={day.value}
