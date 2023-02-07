@@ -175,29 +175,31 @@ export default function UserSidebar() {
                   {coins.map((coin) => {
                     if (watchlist.includes(coin.id))
                       console.log(coin.price_change_24h);
-                    return (
-                      <div className={classes.coin}>
-                        <span>{coin.name}</span>
-                        <span
-                          style={{
-                            display: "flex",
-                            gap: 8,
-                            color:
-                              coin.price_change_24h > 0 ? "#02a100" : "#d8252f",
-                          }}
-                        >
-                          {symbol}
-                          {numberWithCommas(coin.current_price.toFixed(2))}
-                          <span>
-                            <AiFillDelete
-                              style={{ cursor: "pointer" }}
-                              fontSize="16"
-                              onClick={() => removeFromWatchlist(coin)}
-                            />
+                      return (
+                        <div className={classes.coin}>
+                          <span>{coin.name}</span>
+                          <span
+                            style={{
+                              display: "flex",
+                              gap: 8,
+                              color:
+                                coin.price_change_24h > 0
+                                  ? "#02a100"
+                                  : "#d8252f",
+                            }}
+                          >
+                            {symbol}
+                            {numberWithCommas(coin.current_price.toFixed(2))}
+                            <span>
+                              <AiFillDelete
+                                style={{ cursor: "pointer" }}
+                                fontSize="16"
+                                onClick={() => removeFromWatchlist(coin)}
+                              />
+                            </span>
                           </span>
-                        </span>
-                      </div>
-                    );
+                        </div>
+                      );
                   })}
                 </div>
               </div>
