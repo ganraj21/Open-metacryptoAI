@@ -9,7 +9,7 @@ import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 const ContainerCp = styled("div")(({ theme }) => ({
   display: "flex",

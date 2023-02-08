@@ -8,7 +8,7 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import SelectButton from "./SelectButton";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Containerci = styled("div")(({ theme }) => ({

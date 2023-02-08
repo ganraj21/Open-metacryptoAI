@@ -16,8 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import Pagination from "@mui/material/Pagination";
-
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

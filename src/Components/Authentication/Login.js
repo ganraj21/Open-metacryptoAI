@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 const BoxStyle = styled(Box)(({ theme }) => ({
   display: "flex",

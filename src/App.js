@@ -4,7 +4,7 @@ import Alerts from "./Components/Alerts";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 const Div = styled("div")(({ theme }) => ({
   backgroundColor: "#232629",

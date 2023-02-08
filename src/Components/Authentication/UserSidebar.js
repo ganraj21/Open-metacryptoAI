@@ -6,7 +6,7 @@ import { auth, db } from "../../firebase";
 import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 const font_fs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";

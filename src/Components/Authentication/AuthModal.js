@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Fade, AppBar, Tabs, Tab, Box, Button, Modal } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 import Login from "./Login";
 import Signup from "./Signup";
 import GoogleButton from "react-google-button";

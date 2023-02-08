@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 
 const BoxStyle = styled(Box)(({ theme }) => ({
   display: "flex",

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Carousel from "./Carousel";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { HashLink } from "react-router-hash-link";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/system";
 import bg_banner from "../Images/banner2.jpg";
 
 const BannerDiv = styled("div")(({ theme }) => ({
