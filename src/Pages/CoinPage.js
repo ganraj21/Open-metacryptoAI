@@ -1,7 +1,4 @@
-import LinearProgress from "@mui/material/LinearProgress";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
+import { LinearProgress, Typography, Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,8 +9,54 @@ import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import "./CoinPage.css";
+import { styled } from "@mui/material/styles";
 
+const ContainerCp = styled("div")(({ theme }) => ({
+  display: "flex",
+  background: "#151829",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    alignItems: "center",
+  },
+}));
+
+const SidebarCp = styled("div")(({ theme }) => ({
+  width: "30%",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  marginTop: 25,
+  borderRight: "2px solid grey",
+}));
+const HeadingCp = styled(Typography)(({ theme }) => ({
+  fontWeight: "bold",
+  marginBottom: 20,
+  fontFamily: "Montserrat",
+}));
+const DescriptionCp = styled(Typography)(({ theme }) => ({
+  width: "100%",
+  fontFamily: "Montserrat",
+  textAlign: "left",
+  padding: "25px",
+}));
+
+const MarketDataCp = styled("div")(({ theme }) => ({
+  alignSelf: "start",
+  padding: 25,
+  paddingTop: 10,
+  width: "100%",
+  [theme.breakpoints.down("md")]: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  [theme.breakpoints.down("xs")]: {
+    alignItems: "start",
+  },
+}));
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
@@ -31,9 +74,6 @@ const CoinPage = () => {
     fetchCoin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const useStyles = makeStyles((theme) => ({}));
-  const classes = useStyles();
 
   if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
 
@@ -88,8 +128,8 @@ const CoinPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="sidebar">
+    <ContainerCp>
+      <SidebarCp>
         {/* sidebar */}
         <img
           src={coin?.image.large}
@@ -97,33 +137,23 @@ const CoinPage = () => {
           height="150"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className="heading">
-          {coin?.name}
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          classes={classes.description}
-          style={{ padding: "25px" }}
-        >
+        <HeadingCp variant="h3">{coin?.name}</HeadingCp>
+        <DescriptionCp variant="subtitle1">
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
-        </Typography>
+        </DescriptionCp>
 
-        <div className={classes.marketData}>
+        <MarketDataCp>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Rank:
-            </Typography>
+            <HeadingCp variant="h5">Rank:</HeadingCp>
             &nbsp; &nbsp;
-            <Typography variant="h5" style={{ fontFamily: "Montserrat" }}>
+            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
               {coin?.market_cap_rank}
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Current Price:
-            </Typography>
+            <HeadingCp variant="h5">Current Price:</HeadingCp>
             &nbsp; &nbsp;
-            <Typography variant="h5" style={{ fontFamily: "Montserrat" }}>
+            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
               {symbol}
               {numberWithCommas(
                 coin?.market_data.current_price[currency.toLowerCase()]
@@ -131,11 +161,9 @@ const CoinPage = () => {
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Market Cap:
-            </Typography>
+            <HeadingCp variant="h5">Market Cap:</HeadingCp>
             &nbsp; &nbsp;
-            <Typography variant="h5" style={{ fontFamily: "Montserrat" }}>
+            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
               {symbol}
               {numberWithCommas(
                 coin?.market_data.market_cap[currency.toLowerCase()]
@@ -148,7 +176,7 @@ const CoinPage = () => {
           {user && (
             <Button
               variant="outlined"
-              style={{
+              sx={{
                 width: "100%",
                 height: 40,
                 backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
@@ -159,12 +187,12 @@ const CoinPage = () => {
               {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
             </Button>
           )}
-        </div>
-      </div>
+        </MarketDataCp>
+      </SidebarCp>
 
       {/* chart */}
       <CoinInfo coin={coin} />
-    </div>
+    </ContainerCp>
   );
 };
 

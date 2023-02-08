@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 
 const Div = styled("div")(({ theme }) => ({
   backgroundColor: "#232629",
-  color: theme.palette.primary.main,
+  color: "#fff",
   minHeight: 100,
 }));
 

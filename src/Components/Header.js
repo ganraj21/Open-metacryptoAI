@@ -8,8 +8,28 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import AuthModal from "./Authentication/AuthModal";
 import UserSidebar from "./Authentication/UserSidebar";
-import "./styles/Header.css";
+import { styled } from "@mui/material/styles";
 
+const Appbar = styled(AppBar)(({ theme }) => ({
+  height: "67px",
+  background: "#9641da78",
+  backdropFilter: "blur(11px)",
+  position: "sticky",
+  top: 0,
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "5px",
+  },
+}));
+const AppTitle = styled(Typography)(({ theme }) => ({
+  flex: 1,
+  fontSize: "24px",
+  color: "#fff",
+  fontFamily:
+    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
+
+  cursor: "pointer",
+}));
 const Header = () => {
   const navigate = useNavigate();
 
@@ -17,18 +37,15 @@ const Header = () => {
 
   console.log(currency);
   const darkTheme = createTheme({ palette: { mode: "dark" } });
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color="transparent" position="static" className="app_bar">
+      <Appbar color="transparent" position="static">
         <Container>
           <Toolbar>
-            <Typography
-              onClick={() => navigate("/")}
-              className="title"
-              variant="h6"
-            >
+            <AppTitle onClick={() => navigate("/")} variant="h6">
               MetaCrypto
-            </Typography>
+            </AppTitle>
 
             <Select
               variant="outlined"
@@ -44,7 +61,7 @@ const Header = () => {
             {user ? <UserSidebar /> : <AuthModal />}
           </Toolbar>
         </Container>
-      </AppBar>
+      </Appbar>
     </ThemeProvider>
   );
 };

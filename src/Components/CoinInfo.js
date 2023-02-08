@@ -9,6 +9,7 @@ import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import SelectButton from "./SelectButton";
 import { styled } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Containerci = styled("div")(({ theme }) => ({
   width: "75%",
@@ -54,62 +55,70 @@ const CoinInfo = ({ coin }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, days]);
 
+  const darkTheme = createTheme({ palette: { mode: "dark" } });
+
   const profit = coin.market_data.price_change_24h > 0;
   console.log(coin.market_data.price_change_24h);
 
   return (
     <>
-      <Containerci>
-        {/* chart */}
+      <ThemeProvider theme={darkTheme}>
+        <Containerci>
+          {/* chart */}
 
-        {!historicData ? (
-          <CircularProgress style={{ color: "gold" }} size={150} thikness={1} />
-        ) : (
-          <>
-            <Line
-              data={{
-                labels: historicData.map((coin) => {
-                  let date = new Date(coin[0]);
-                  let time =
-                    date.getHours() > 12
-                      ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
-                      : `${date.getHours()}:${date.getMinutes()} AM`;
-
-                  return days === 1 ? time : date.toLocaleDateString();
-                }),
-
-                datasets: [
-                  {
-                    data: historicData.map((coin) => coin[1]),
-                    label: `Past(Past ${days} Days) in ${currency}`,
-                    borderColor: profit ? "#16c784" : "#ea3943",
-                  },
-                ],
-              }}
-              options={{
-                elements: {
-                  point: {
-                    radius: 1,
-                  },
-                },
-              }}
+          {!historicData ? (
+            <CircularProgress
+              style={{ color: "gold" }}
+              size={150}
+              thikness={1}
             />
-            <ChartBtn>
-              {chartDays.map((day) => (
-                <SelectButton
-                  key={day.value}
-                  onClick={() => setDays(day.value)}
-                  selected={day.value === days}
-                >
-                  {day.label}
-                </SelectButton>
-              ))}
-            </ChartBtn>
-          </>
-        )}
+          ) : (
+            <>
+              <Line
+                data={{
+                  labels: historicData.map((coin) => {
+                    let date = new Date(coin[0]);
+                    let time =
+                      date.getHours() > 12
+                        ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
+                        : `${date.getHours()}:${date.getMinutes()} AM`;
 
-        {/* buttons */}
-      </Containerci>
+                    return days === 1 ? time : date.toLocaleDateString();
+                  }),
+
+                  datasets: [
+                    {
+                      data: historicData.map((coin) => coin[1]),
+                      label: `Past(Past ${days} Days) in ${currency}`,
+                      borderColor: profit ? "#16c784" : "#ea3943",
+                    },
+                  ],
+                }}
+                options={{
+                  elements: {
+                    point: {
+                      radius: 1,
+                    },
+                  },
+                }}
+              />
+              <ChartBtn>
+                {chartDays.map((day) => (
+                  <SelectButton
+                    key={day.value}
+                    onClick={() => setDays(day.value)}
+                    selected={day.value === days}
+                  >
+                    {day.label}
+                  </SelectButton>
+                ))}
+              </ChartBtn>
+            </>
+          )}
+
+          {/* buttons */}
+        </Containerci>
+      </ThemeProvider>
     </>
   );
 };
