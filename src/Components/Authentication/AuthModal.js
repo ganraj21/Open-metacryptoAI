@@ -7,6 +7,7 @@ import GoogleButton from "react-google-button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { CryptoState } from "../../CryptoContext";
+// import styled from "styled-components";
 
 const ModalStyles = styled(Modal)(({ theme }) => ({
   display: "flex",

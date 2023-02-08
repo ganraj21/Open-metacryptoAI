@@ -5,6 +5,8 @@ import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
 import { styled } from "@mui/system";
+import Login from "./Components/Authentication/Login";
+import Signup from "./Components/Authentication/Signup";
 
 const Div = styled("div")(({ theme }) => ({
   backgroundColor: "#232629",
@@ -19,6 +21,8 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/user/login" element={<Login />} />
+          <Route exact path="/user/signup" element={<Signup />} />
           <Route exact path="/coins/:id" element={<CoinPage />} />
         </Routes>
       </Div>
