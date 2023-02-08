@@ -1,0 +1,62 @@
+.banner {
+  background-image: url("./banner2.jpg");
+  background-color: hsl(259 20% 18%);
+  background-attachment: "fixed";
+  background-position: "center";
+  background-repeat: "no-repeat";
+  background-size: "cover";
+}
+
+.bannerContent {
+  height: 650px;
+  display: flex !important;
+  flex-direction: column;
+  padding-top: 66px 0 66px 0;
+  justify-content: space-around;
+}
+
+.tagline {
+  padding-top: 20px;
+  display: flex;
+  height: 60%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.subtitle {
+  color: darkgrey;
+  text-transform: capitalize;
+  font-family: Montserrat;
+}
+.carousel {
+  height: 60%;
+  display: flex;
+  align-items: center;
+}
+.start_btn {
+  margin: 20px 0 0 0;
+  gap: 10px;
+  height: 45px;
+  background: gold;
+  color: #000;
+}
+.tagline_t {
+  font-weight: "bold";
+  margin-bottom: 15;
+  font-family: "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
+}
+@media screen and (max-width: 600px) {
+  .bannerContent {
+    height: 590px;
+    padding: 19px 0 0 0;
+  }
+  .tagline_t {
+    font-size: 2.75rem;
+    padding: 48px 0 0 0;
+  }
+  .subtitle {
+    padding: 15px;
+  }
+}

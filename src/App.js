@@ -4,22 +4,24 @@ import Alerts from "./Components/Alerts";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
+import { styled } from "@mui/material/styles";
 
-const aap = {
-  background: "#232629",
-  color: "white",
-  minHeight: "100vh",
-};
+const Div = styled("div")(({ theme }) => ({
+  backgroundColor: "#232629",
+  color: theme.palette.primary.main,
+  minHeight: 100,
+}));
+
 function App() {
   return (
     <BrowserRouter>
-      <div sx={aap}>
+      <Div>
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/coins/:id" element={<CoinPage />} />
         </Routes>
-      </div>
+      </Div>
       <Alerts />
     </BrowserRouter>
   );

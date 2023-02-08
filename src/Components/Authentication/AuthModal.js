@@ -1,15 +1,16 @@
-import React from "react";
-import { makeStyles } from "tss-react/mui";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Backdrop from "@mui/material/Backdrop";
-import Fade from "@mui/material/Fade";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import { styled, alpha } from "@mui/material/styles";
+import React, { useState } from "react";
+import {
+  Backdrop,
+  Fade,
+  AppBar,
+  Tabs,
+  Tab,
+  Box,
+  Button,
+  Modal,
+} from "@mui/material";
+
+import { styled } from "@mui/material/styles";
 import Login from "./Login";
 import Signup from "./Signup";
 import GoogleButton from "react-google-button";
@@ -17,18 +18,23 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { CryptoState } from "../../CryptoContext";
 
-const m_style = {
+const ModalStyles = styled(Modal)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-};
-const paper_s = {
+}));
+const Authbutton = styled(Button)(({ theme }) => ({
+  width: "85px",
+  height: "40px",
+  marginLeft: "15px",
+  backgroundColor: "#EEBC1D",
+}));
+const Papers = styled("div")(({ theme }) => ({
   width: 400,
-  // backgroundColor: theme.palette.background.paper,
   color: "white",
   borderRadius: 10,
-};
-const google_s = {
+}));
+const GoogleBoxs = styled(Box)(({ theme }) => ({
   padding: 24,
   paddingTop: 0,
   display: "flex",
@@ -36,20 +42,26 @@ const google_s = {
   textAlign: "center",
   gap: 20,
   fontSize: 18,
-};
+}));
+const AppBarStyle = styled(AppBar)(({ theme }) => ({
+  backgroundColor: "transparent",
+  color: "white",
+}));
+const GoogleButtons = styled(GoogleButton)(({ theme }) => ({
+  width: "100%",
+  outline: "none",
+}));
 export default function AuthModal() {
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(0);
   const { setAlert } = CryptoState();
 
   const handleOpen = () => {
     setOpen(true);
   };
-  const darkTheme = createTheme({ palette: { mode: "dark" } });
   const handleClose = () => {
     setOpen(false);
   };
-  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -75,22 +87,12 @@ export default function AuthModal() {
   };
   return (
     <div>
-      <Button
-        variant="contained"
-        style={{
-          width: 85,
-          height: 40,
-          marginLeft: 15,
-          backgroundColor: "#EEBC1D",
-        }}
-        onClick={handleOpen}
-      >
+      <Authbutton variant="contained" onClick={handleOpen}>
         Login
-      </Button>
-      <Modal
+      </Authbutton>
+      <ModalStyles
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        // className={classes.modal}
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -98,36 +100,29 @@ export default function AuthModal() {
         BackdropProps={{
           timeout: 500,
         }}
-        sx={m_style}
       >
         <Fade in={open}>
-          <div sx={paper_s}>
-            <AppBar
-              position="static"
-              style={{ backgroundColor: "transparent", color: "white" }}
-            >
+          <Papers>
+            <AppBarStyle position="static">
               <Tabs
                 value={value}
                 onChange={handleChange}
                 variant="fullWidth"
-                style={{ borderRadius: 10 }}
+                sx={{ borderRadius: 10 }}
               >
                 <Tab label="Login" />
                 <Tab label="Sign Up" />
               </Tabs>
-            </AppBar>
+            </AppBarStyle>
             {value === 0 && <Login handleclose={handleClose} />}
             {value === 1 && <Signup handleclose={handleClose} />}
-            <Box sx={google_s}>
+            <GoogleBoxs>
               <span>OR</span>
-              <GoogleButton
-                sx={{ width: "100%", outline: "none" }}
-                onClick={signInWithGoogle}
-              />
-            </Box>
-          </div>
+              <GoogleButtons onClick={signInWithGoogle} />
+            </GoogleBoxs>
+          </Papers>
         </Fade>
-      </Modal>
+      </ModalStyles>
     </div>
   );
 }
