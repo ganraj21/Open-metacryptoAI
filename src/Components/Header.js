@@ -16,6 +16,7 @@ const Appbar = styled(AppBar)(({ theme }) => ({
   backdropFilter: "blur(11px)",
   position: "sticky",
   top: 0,
+  zIndex: 100,
   [theme.breakpoints.down("sm")]: {
     padding: "5px",
   },
@@ -46,7 +47,7 @@ const Header = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Appbar color="transparent" position="static">
-        <Container>
+        <Container sx={{ padding: 0 }}>
           <Toolbar>
             <AppTitle onClick={() => navigate("/")} variant="h6">
               MetaCrypto

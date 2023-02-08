@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Backdrop,
-  Fade,
-  AppBar,
-  Tabs,
-  Tab,
-  Box,
-  Button,
-  Modal,
-} from "@mui/material";
+import { Fade, AppBar, Tabs, Tab, Box, Button, Modal } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -21,6 +12,8 @@ const ModalStyles = styled(Modal)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  backgroundColor: "transperent",
+  backdropFilter: "blur(11px)",
 }));
 const Authbutton = styled(Button)(({ theme }) => ({
   width: "85px",
@@ -35,6 +28,13 @@ const Papers = styled("div")(({ theme }) => ({
   width: 400,
   color: "white",
   borderRadius: 10,
+  padding: "25px 20px",
+  background: "#2a2c2ed4",
+  border: "1px solid #3e343499",
+  [theme.breakpoints.down("sm")]: {
+    width: "90%",
+    padding: "15px 20px",
+  },
 }));
 const GoogleBoxs = styled(Box)(({ theme }) => ({
   padding: 24,
@@ -48,10 +48,6 @@ const GoogleBoxs = styled(Box)(({ theme }) => ({
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: "transparent",
   color: "white",
-}));
-const GoogleButtons = styled(GoogleButton)(({ theme }) => ({
-  width: "100%",
-  outline: "none",
 }));
 export default function AuthModal() {
   const [open, setOpen] = useState(false);
@@ -93,15 +89,10 @@ export default function AuthModal() {
         Login
       </Authbutton>
       <ModalStyles
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
         open={open}
         onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={open}>
           <Papers>
@@ -120,7 +111,10 @@ export default function AuthModal() {
             {value === 1 && <Signup handleclose={handleClose} />}
             <GoogleBoxs>
               <span>OR</span>
-              <GoogleButtons onClick={signInWithGoogle} />
+              <GoogleButton
+                style={{ width: "100%", outline: "none" }}
+                onClick={signInWithGoogle}
+              />
             </GoogleBoxs>
           </Papers>
         </Fade>

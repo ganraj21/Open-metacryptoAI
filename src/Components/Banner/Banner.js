@@ -5,7 +5,7 @@ import Carousel from "./Carousel";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { HashLink } from "react-router-hash-link";
 import { styled } from "@mui/material/styles";
-import bg_banner from "../styles/banner2.jpg";
+import bg_banner from "../Images/banner2.jpg";
 
 const BannerDiv = styled("div")(({ theme }) => ({
   backgroundImage: `url(${bg_banner})`,
@@ -13,7 +13,7 @@ const BannerDiv = styled("div")(({ theme }) => ({
   backgroundAttachment: "fixed",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
+  backgroundSize: "fill",
 }));
 
 const BannerContent = styled(Container)(({ theme }) => ({
@@ -36,6 +36,7 @@ const Tagline = styled("div")(({ theme }) => ({
   justifyContent: "center",
   textAlign: "center",
   alignItems: "center",
+  gap: "6px",
 }));
 
 const Tline = styled(Typography)(({ theme }) => ({
@@ -55,11 +56,15 @@ const Subtitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: { padding: "15px" },
 }));
 const StartBtn = styled(Button)(({ theme }) => ({
-  margin: "20px 0 0 0",
+  margin: "18px 0 0 0",
   gap: "10px",
   height: "45px",
   background: "gold",
   color: "#000",
+  "&:hover": {
+    backgroundColor: "#ffdf33",
+    fontWeight: 500,
+  },
 }));
 
 function Banner() {

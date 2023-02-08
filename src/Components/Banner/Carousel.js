@@ -15,7 +15,6 @@ const CarouselStyle = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   [theme.breakpoints.down("sm")]: {
-    height: "40%",
     marginTop: "48px",
   },
 }));
@@ -27,15 +26,16 @@ const CarouselItems = styled(Link)(({ theme }) => ({
   cursor: "pointer",
   textTransform: "uppercase",
   color: "white",
-  background: "#a5a5a540",
+  background: "#cecece30",
   backdropFilter: "blur(13px)",
   padding: "10px",
   borderRadius: "6px",
   width: "250px",
   height: "180px",
   justifyContent: "center",
+  marginLeft: "10px",
   [theme.breakpoints.down("sm")]: {
-    width: "165px",
+    width: "90%",
     height: "174px",
     padding: "10px",
     display: "flex",

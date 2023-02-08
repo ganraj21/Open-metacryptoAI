@@ -14,10 +14,8 @@ import {
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
-// import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import Pagination from "@mui/material/Pagination";
-import "./styles/CoinTable.css";
 
 import { styled } from "@mui/material/styles";
 
@@ -58,6 +56,10 @@ const Typographystyle = styled(Typography)(({ theme }) => ({
   margin: 18,
   fontFamily: fontfs,
 }));
+const TestFieldStyles = styled(TextField)(({ theme }) => ({
+  marginBottom: "20px",
+  width: "100%",
+}));
 const CoinsTable = () => {
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
@@ -92,13 +94,12 @@ const CoinsTable = () => {
             Cryptocurrency Prices by Market Cap
           </Typographystyle>
 
-          <TextField
+          <TestFieldStyles
             id="cryptoinfo"
             label="Search For a Crypto Currency.."
             variant="outlined"
-            sx={{ marginBottom: "20px", width: "100%" }}
             onChange={(e) => setSearch(e.target.value)}
-          ></TextField>
+          ></TestFieldStyles>
 
           <TableContainer>
             {loading ? (

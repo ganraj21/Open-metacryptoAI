@@ -51,7 +51,7 @@ const MarketDataCp = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "left",
   },
   [theme.breakpoints.down("xs")]: {
     alignItems: "start",
