@@ -65,7 +65,6 @@ const CoinPage = () => {
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
-
     setCoin(data);
   };
   console.log(coin);
@@ -75,7 +74,7 @@ const CoinPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
+  if (!coin) return <LinearProgress sx={{ backgroundColor: "gold" }} />;
 
   const inWatchlist = watchlist.includes(coin?.id);
 
@@ -181,6 +180,7 @@ const CoinPage = () => {
                 height: 40,
                 backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
                 color: inWatchlist ? "#fff" : "#000",
+                border: "none",
               }}
               onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
             >

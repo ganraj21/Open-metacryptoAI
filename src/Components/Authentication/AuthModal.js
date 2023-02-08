@@ -27,6 +27,9 @@ const Authbutton = styled(Button)(({ theme }) => ({
   height: "40px",
   marginLeft: "15px",
   backgroundColor: "#EEBC1D",
+  "&:hover": {
+    backgroundColor: "#fff",
+  },
 }));
 const Papers = styled("div")(({ theme }) => ({
   width: 400,

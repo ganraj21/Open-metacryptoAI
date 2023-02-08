@@ -16,7 +16,6 @@ const Appbar = styled(AppBar)(({ theme }) => ({
   backdropFilter: "blur(11px)",
   position: "sticky",
   top: 0,
-
   [theme.breakpoints.down("sm")]: {
     padding: "5px",
   },
@@ -29,6 +28,12 @@ const AppTitle = styled(Typography)(({ theme }) => ({
     "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
 
   cursor: "pointer",
+}));
+const Selecth = styled(Select)(({ theme }) => ({
+  width: 100,
+  height: 40,
+  marginLeft: 15,
+  color: "#fff",
 }));
 const Header = () => {
   const navigate = useNavigate();
@@ -47,17 +52,16 @@ const Header = () => {
               MetaCrypto
             </AppTitle>
 
-            <Select
+            <Selecth
               variant="outlined"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              sx={{ width: 100, height: 40, marginLeft: 15, color: "#fff" }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
               <MenuItem value={"INR"}>INR</MenuItem>
               <MenuItem value={"USD"}>USD</MenuItem>
-            </Select>
+            </Selecth>
             {user ? <UserSidebar /> : <AuthModal />}
           </Toolbar>
         </Container>
