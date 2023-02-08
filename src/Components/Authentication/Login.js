@@ -5,6 +5,15 @@ import Button from "@mui/material/Button";
 import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { styled } from "@mui/material/styles";
+
+const BoxStyle = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  fontFamily:
+    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
+}));
 
 const Login = ({ handleclose }) => {
   const [email, setEmail] = useState();
@@ -38,16 +47,7 @@ const Login = ({ handleclose }) => {
     }
   };
   return (
-    <Box
-      p={3}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        fontFamily:
-          "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
-      }}
-    >
+    <BoxStyle p={3}>
       <TextField
         variant="outlined"
         type="email"
@@ -72,8 +72,7 @@ const Login = ({ handleclose }) => {
       >
         Login
       </Button>
-    </Box>
+    </BoxStyle>
   );
 };
-
 export default Login;

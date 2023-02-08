@@ -9,7 +9,6 @@ import {
   Button,
   Modal,
 } from "@mui/material";
-
 import { styled } from "@mui/material/styles";
 import Login from "./Login";
 import Signup from "./Signup";

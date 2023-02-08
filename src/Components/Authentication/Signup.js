@@ -5,7 +5,13 @@ import React, { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { styled } from "@mui/material/styles";
 
+const BoxStyle = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+}));
 const Signup = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -45,10 +51,7 @@ const Signup = ({ handleclose }) => {
     }
   };
   return (
-    <Box
-      p={3}
-      style={{ display: "flex", flexDirection: "column", gap: "20px" }}
-    >
+    <BoxStyle p={3}>
       <TextField
         variant="outlined"
         type="email"
@@ -81,7 +84,7 @@ const Signup = ({ handleclose }) => {
       >
         Sign Up
       </Button>
-    </Box>
+    </BoxStyle>
   );
 };
 

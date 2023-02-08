@@ -1,11 +1,9 @@
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
+import { Snackbar, Alert } from "@mui/material";
 import React from "react";
 import { CryptoState } from "../CryptoContext";
 
 const Alerts = () => {
   const { alert, setAlert } = CryptoState();
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;

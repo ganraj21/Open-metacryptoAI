@@ -1,80 +1,98 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "tss-react/mui";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import { Drawer, Button, Avatar } from "@mui/material";
 import { CryptoState } from "../../CryptoContext";
-import Avatar from "@mui/material/Avatar";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
+import { styled } from "@mui/material/styles";
 
 const font_fs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
-const useStyles = makeStyles({
-  container: {
-    width: 350,
-    padding: 25,
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    fontFamily: font_fs,
-    background: "#2685d885",
-    backdropFilter: "blur(11px)",
-  },
-  profile: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "20px",
-    height: "92%",
-  },
-  picture: {
-    width: 100,
-    height: 100,
-    cursor: "pointer",
-    backgroundColor: "#EEBC1D",
-    objectFit: "contain",
-  },
-  logout: {
-    height: "6%",
-    width: "100%",
-    backgroundColor: "#EEBC1D",
-    marginTop: 20,
-    fontFamily: font_fs,
-  },
-  watchlist: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "#e2e2e270",
-    borderRadius: 10,
-    padding: 15,
-    paddingTop: 10,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: 12,
-    overflowY: "scroll",
-    fontFamily: font_fs,
-  },
-  coin: {
-    padding: 10,
-    borderRadius: 5,
-    color: "black",
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#d3c5a270",
-    backdropFilter: "blur(11px)",
-  },
-});
 
+const Containers = styled("div")(({ theme }) => ({
+  width: 350,
+  padding: 25,
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  fontFamily: font_fs,
+  background: "#2685d885",
+  backdropFilter: "blur(11px)",
+}));
+const Profile = styled("div")(({ theme }) => ({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "20px",
+  height: "92%",
+}));
+const SpanStyle = styled("span")(({ theme }) => ({
+  width: "100%",
+  fontSize: 25,
+  textAlign: "center",
+  fontWeight: "bolder",
+  wordWrap: "break-word",
+}));
+const AvatarStyles = styled(Avatar)(({ theme }) => ({
+  height: 38,
+  width: 38,
+  marginLeft: 15,
+  cursor: "pointer",
+  backgroundColor: "#EEBC1D",
+}));
+const Avatarpic = styled(Avatar)(({ theme }) => ({
+  width: 100,
+  height: 100,
+  cursor: "pointer",
+  backgroundColor: "#EEBC1D",
+  objectFit: "contain",
+}));
+
+const UserLogout = styled(Button)(({ theme }) => ({
+  height: "6%",
+  width: "100%",
+  backgroundColor: "#EEBC1D",
+  marginTop: 20,
+  fontFamily: font_fs,
+}));
+
+const Watchlist = styled("div")(({ theme }) => ({
+  flex: 1,
+  width: "100%",
+  backgroundColor: "#e2e2e270",
+  borderRadius: 10,
+  padding: 15,
+  paddingTop: 10,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: 12,
+  overflowY: "scroll",
+  fontFamily: font_fs,
+}));
+
+const CoinStyle = styled("div")(({ theme }) => ({
+  padding: 10,
+  borderRadius: 5,
+  color: "black",
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  backgroundColor: "#d3c5a270",
+  backdropFilter: "blur(11px)",
+}));
+const CoinspanColor = styled("span")(({ theme }) => ({
+  display: "flex",
+  gap: 8,
+  // color: coin.id.price_change_24h > 0 ? "#02a100" : "#d8252f",
+}));
 export default function UserSidebar() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     right: false,
   });
 
@@ -126,22 +144,14 @@ export default function UserSidebar() {
       });
     }
   };
-
   // console.log(coins);
   return (
     <div>
       <div>{<i class="fas fa-regular fa-angle-left"></i>}</div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Avatar
+          <AvatarStyles
             onClick={toggleDrawer(anchor, true)}
-            style={{
-              height: 38,
-              width: 38,
-              marginLeft: 15,
-              cursor: "pointer",
-              backgroundColor: "#EEBC1D",
-            }}
             src={user.photoURL}
             alt={user.displayName || user.email}
           />
@@ -150,25 +160,14 @@ export default function UserSidebar() {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <div className={classes.container}>
-              <div className={classes.profile}>
-                <Avatar
-                  className={classes.picture}
+            <Containers>
+              <Profile>
+                <Avatarpic
                   src={user.photoURL}
                   alt={user.displayName || user.email}
                 />
-                <span
-                  style={{
-                    width: "100%",
-                    fontSize: 25,
-                    textAlign: "center",
-                    fontWeight: "bolder",
-                    wordWrap: "break-word",
-                  }}
-                >
-                  {user.displayName || user.email}
-                </span>
-                <div className={classes.watchlist}>
+                <SpanStyle>{user.displayName || user.email}</SpanStyle>
+                <Watchlist>
                   <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
                     WatchList
                   </span>
@@ -177,18 +176,9 @@ export default function UserSidebar() {
                     if (watchlist.includes(coin.id)) {
                       console.log(coin.id.price_change_24h);
                       return (
-                        <div className={classes.coin}>
+                        <CoinStyle>
                           <span>{coin.name}</span>
-                          <span
-                            style={{
-                              display: "flex",
-                              gap: 8,
-                              color:
-                                coin.id.price_change_24h > 0
-                                  ? "#02a100"
-                                  : "#d8252f",
-                            }}
-                          >
+                          <CoinspanColor>
                             {symbol}
                             {numberWithCommas(coin.current_price.toFixed(2))}
                             <span>
@@ -198,21 +188,17 @@ export default function UserSidebar() {
                                 onClick={() => removeFromWatchlist(coin)}
                               />
                             </span>
-                          </span>
-                        </div>
+                          </CoinspanColor>
+                        </CoinStyle>
                       );
                     }
                   })}
-                </div>
-              </div>
-              <Button
-                variant="contained"
-                className={classes.logout}
-                onClick={logout}
-              >
+                </Watchlist>
+              </Profile>
+              <UserLogout variant="contained" onClick={logout}>
                 Logout
-              </Button>
-            </div>
+              </UserLogout>
+            </Containers>
           </Drawer>
         </React.Fragment>
       ))}
