@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "tss-react/mui";
 import { Drawer, Button, Avatar } from "@mui/material";
 import { CryptoState } from "../../CryptoContext";
 import { signOut } from "firebase/auth";

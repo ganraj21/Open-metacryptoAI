@@ -1,33 +1,67 @@
-// import axios from "axios";
-import LinearProgress from "@mui/material/LinearProgress";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Container from "@mui/material/Container";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import React, { useState, useEffect } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  Typography,
+  LinearProgress,
+  TextField,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+
 import { useNavigate } from "react-router-dom";
 // import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import Pagination from "@mui/material/Pagination";
 import "./styles/CoinTable.css";
 
+import { styled } from "@mui/material/styles";
+
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+const fontfs =
+  "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
+const RowStyle = styled(TableRow)(({ theme }) => ({
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: "#131111",
+  },
+  fontFamily: fontfs,
+}));
+const PaginationStyle = styled(Pagination)(({ theme }) => ({
+  padding: 20,
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  "& .MuiPaginationItem-root": {
+    color: "gold",
+    [theme.breakpoints.down("sm")]: {
+      padding: "15px 3px 16px 3px",
+    },
+  },
+}));
+const TableCellS = styled(TableCell)(({ theme }) => ({
+  display: "flex",
+  gap: 15,
+  fontFamily: fontfs,
+}));
+const TableCellStyle = styled(TableCell)(({ theme }) => ({
+  fontFamily: fontfs,
+}));
+const Typographystyle = styled(Typography)(({ theme }) => ({
+  margin: 18,
+  fontFamily: fontfs,
+}));
 const CoinsTable = () => {
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  const fontfs =
-    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
-
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
   const darkTheme = createTheme({ palette: { mode: "dark" } });
@@ -54,15 +88,15 @@ const CoinsTable = () => {
     <>
       <ThemeProvider theme={darkTheme}>
         <Container sx={{ textAlign: "center" }}>
-          <Typography variant="h4" sx={{ margin: 18, fontFamily: fontfs }}>
+          <Typographystyle variant="h4">
             Cryptocurrency Prices by Market Cap
-          </Typography>
+          </Typographystyle>
 
           <TextField
             id="cryptoinfo"
             label="Search For a Crypto Currency.."
             variant="outlined"
-            sx={{ marginBottom: 20, width: "100%" }}
+            sx={{ marginBottom: "20px", width: "100%" }}
             onChange={(e) => setSearch(e.target.value)}
           ></TextField>
 
@@ -75,8 +109,7 @@ const CoinsTable = () => {
                   <TableRow>
                     {["Coin", "Price", "24h Change", "Market Cap"].map(
                       (head) => (
-                        <TableCell
-                          className="table_cell"
+                        <TableCellStyle
                           sx={{
                             color: "black",
                             fontWeight: "700",
@@ -85,7 +118,7 @@ const CoinsTable = () => {
                           align={head === "Coin" ? "" : "right"}
                         >
                           {head}
-                        </TableCell>
+                        </TableCellStyle>
                       )
                     )}
                   </TableRow>
@@ -96,49 +129,41 @@ const CoinsTable = () => {
                     .map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
                       return (
-                        <TableRow
+                        <RowStyle
                           onClick={() => navigate(`/coins/${row.id}`)}
-                          // className={classes.coin}
                           key={row.name}
                         >
-                          <TableCell
-                            className="table_cell"
-                            component="th"
-                            scope="coin"
-                            sx={{
-                              display: "flex",
-                              gap: 15,
-                            }}
-                          >
+                          <TableCellS component="th" scope="coin">
                             <img
                               src={row?.image}
                               alt={row.name}
                               height="50"
-                              sx={{ marginBottom: 10 }}
+                              style={{ marginBottom: 10 }}
                             />
                             <div
-                              sx={{
+                              style={{
                                 display: "flex",
                                 flexDirection: "column",
                               }}
                             >
                               <span
-                                sx={{
+                                style={{
                                   textTransform: "uppercase",
                                   fontSize: 22,
                                 }}
                               >
                                 {row.symbol}
                               </span>
-                              <span sx={{ color: "darkgrey" }}>{row.name}</span>
+                              <span style={{ color: "darkgrey" }}>
+                                {row.name}
+                              </span>
                             </div>
-                          </TableCell>
-                          <TableCell align="right" className="table_cell">
+                          </TableCellS>
+                          <TableCellStyle align="right">
                             {symbol}
                             {numberWithCommas(row.current_price.toFixed(2))}
-                          </TableCell>
-                          <TableCell
-                            className="table_cell"
+                          </TableCellStyle>
+                          <TableCellStyle
                             align="right"
                             sx={{
                               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
@@ -147,34 +172,28 @@ const CoinsTable = () => {
                           >
                             {profit && "+"}
                             {row.price_change_percentage_24h.toFixed(2)}%
-                          </TableCell>
-                          <TableCell align="right" className="table_cell">
+                          </TableCellStyle>
+                          <TableCellStyle align="right">
                             {symbol}
                             {numberWithCommas(
                               row.market_cap.toString().slice(0, -6)
                             )}
                             M
-                          </TableCell>
-                        </TableRow>
+                          </TableCellStyle>
+                        </RowStyle>
                       );
                     })}
                 </TableBody>
               </Table>
             )}
           </TableContainer>
-          <Pagination
+          <PaginationStyle
             count={(handleSearch()?.length / 10).toFixed(0)}
-            sx={{
-              padding: 20,
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-            className=" pagination "
             onChange={(_, value) => {
               setPage(value);
               window.scroll(0, 450);
             }}
+            shape="rounded"
           />
         </Container>
       </ThemeProvider>
