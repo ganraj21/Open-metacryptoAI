@@ -17,12 +17,12 @@ const Header = () => {
 
   return (
     <NavbarContainer>
-      <Navbar className="appbar">
+      <Navbar style={{ padding: "10px 0" }}>
         <Container>
           <h2 className="app_title" onClick={() => navigate("/")}>
             MetaCrypto
           </h2>
-          <div style={{ display: "flex" }}>
+          <div className="formselectbtns">
             <Form.Select
               aria-label="Default select example"
               className="select_section"
@@ -43,29 +43,38 @@ const Header = () => {
 export default Header;
 
 const NavbarContainer = styled.div`
-.appbar{
   height: 67px;
   background: #9641da78;
   backdrop-filter: blur(11px);
   position: sticky;
-  top: 0,
-  z-index: 100,
-  @media (max-width: 600px) {
-    padding: 5px;
+  top: 0;
+  z-index: 100;
+  @media (max-width: 360px) {
+    height: 110px;
   }
-}
-.app_title{
-  flex: 1,
-  font-size: 24px;
-  color: #fff;
-  fontFamily: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif;
-  cursor: pointer;
-}
-.select_section{
-  width: 100px;
-  height: 40px;
-  marginLeft: 15px;
-  color: #000;
-  border : none;
-}
+
+  .app_title {
+    flex: 1;
+    font-size: 24px;
+    margin: 0;
+    color: #fff;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
+      Helvetica, Arial, sans-serif;
+    cursor: pointer;
+  }
+  .select_section {
+    width: 100px;
+    height: 40px;
+    margin-left: 15px;
+    color: #000;
+    border: none;
+  }
+  .formselectbtns {
+    display: flex;
+    margin-top: 3px;
+    @media (max-width: 360px) {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
 `;

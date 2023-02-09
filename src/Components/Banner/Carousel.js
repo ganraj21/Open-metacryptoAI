@@ -113,6 +113,10 @@ const CarouselStyle = styled.div`
     justify-content: center;
     margin-left: 10px;
     text-decoration: none;
+    @media (max-width: 800px) {
+      width: 123px;
+      height: 205px;
+    }
     @media (max-width: 600px) {
       width: 90%;
       height: 200px;

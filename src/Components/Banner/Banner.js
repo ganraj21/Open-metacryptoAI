@@ -55,6 +55,7 @@ const BannerDiv = styled.div`
   .tagline{
     display: flex;
     height: 60%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     text-align: center
@@ -62,8 +63,8 @@ const BannerDiv = styled.div`
     align-items: center;
     @media (max-width: 600px) {
       height: 700px;
-      width: 90%;
-      margin-left: 20px;
+      // margin-left: 10px;
+      // width:100%;
     }
   }
   .tline{
@@ -74,6 +75,7 @@ const BannerDiv = styled.div`
 
   @media (max-width: 600px) {
     font-size: 3rem;
+    margin-left: 10px;
   },
   }
   .subtitle{
@@ -83,13 +85,15 @@ const BannerDiv = styled.div`
   @media (max-width: 600px) {
     padding: 15px;
     margin-left: -10px
+    margin-left: 10px;
   }
   }
 
   .hashlinkdiv{
     @media (max-width: 600px) {
       width: 100%;
-      margin-left: 10px;
+      margin-left: 23px;
+
     }
 
   }
@@ -108,5 +112,6 @@ const BannerDiv = styled.div`
       color: #fff
       font-weight: 500,
     },
+
   }
 `;

@@ -1,4 +1,5 @@
-import { LinearProgress, Typography, Button } from "@mui/material";
+import { LinearProgress } from "@mui/material";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,54 +10,8 @@ import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { styled } from "@mui/system";
+import styled from "styled-components";
 
-const ContainerCp = styled("div")(({ theme }) => ({
-  display: "flex",
-  background: "#151829",
-  [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    alignItems: "center",
-  },
-}));
-
-const SidebarCp = styled("div")(({ theme }) => ({
-  width: "30%",
-  [theme.breakpoints.down("md")]: {
-    width: "100%",
-  },
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  marginTop: 25,
-  borderRight: "2px solid grey",
-}));
-const HeadingCp = styled(Typography)(({ theme }) => ({
-  fontWeight: "bold",
-  marginBottom: 20,
-  fontFamily: "Montserrat",
-}));
-const DescriptionCp = styled(Typography)(({ theme }) => ({
-  width: "100%",
-  fontFamily: "Montserrat",
-  textAlign: "left",
-  padding: "25px",
-}));
-
-const MarketDataCp = styled("div")(({ theme }) => ({
-  alignSelf: "start",
-  padding: 25,
-  paddingTop: 10,
-  width: "100%",
-  [theme.breakpoints.down("md")]: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "left",
-  },
-  [theme.breakpoints.down("xs")]: {
-    alignItems: "start",
-  },
-}));
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
@@ -128,7 +83,7 @@ const CoinPage = () => {
 
   return (
     <ContainerCp>
-      <SidebarCp>
+      <div className="sidebar_coinpage">
         {/* sidebar */}
         <img
           src={coin?.image.large}
@@ -136,33 +91,33 @@ const CoinPage = () => {
           height="150"
           style={{ marginBottom: 20 }}
         />
-        <HeadingCp variant="h3">{coin?.name}</HeadingCp>
-        <DescriptionCp variant="subtitle1">
+        <h3 className="headingcp">{coin?.name}</h3>
+        <p className="typos" style={{ margin: 0 }}>
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
-        </DescriptionCp>
+        </p>
 
-        <MarketDataCp>
-          <span style={{ display: "flex" }}>
-            <HeadingCp variant="h5">Rank:</HeadingCp>
+        <div className="market_data">
+          <span>
+            <h5 className="headingcp">Rank:</h5>
             &nbsp; &nbsp;
-            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
+            <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {coin?.market_cap_rank}
-            </Typography>
+            </h5>
           </span>
-          <span style={{ display: "flex" }}>
-            <HeadingCp variant="h5">Current Price:</HeadingCp>
+          <span>
+            <h5 className="headingcp">Current Price:</h5>
             &nbsp; &nbsp;
-            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
+            <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {symbol}
               {numberWithCommas(
                 coin?.market_data.current_price[currency.toLowerCase()]
               )}
-            </Typography>
+            </h5>
           </span>
-          <span style={{ display: "flex" }}>
-            <HeadingCp variant="h5">Market Cap:</HeadingCp>
+          <span>
+            <h5 className="headingcp">Market Cap:</h5>
             &nbsp; &nbsp;
-            <Typography variant="h5" sx={{ fontFamily: "Montserrat" }}>
+            <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {symbol}
               {numberWithCommas(
                 coin?.market_data.market_cap[currency.toLowerCase()]
@@ -170,25 +125,26 @@ const CoinPage = () => {
                   .slice(0, -6)
               )}
               M
-            </Typography>
+            </h5>
           </span>
           {user && (
             <Button
               variant="outlined"
-              sx={{
+              style={{
                 width: "100%",
                 height: 40,
                 backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
                 color: inWatchlist ? "#fff" : "#000",
                 border: "none",
+                marginTop: "10px",
               }}
               onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
             >
               {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
             </Button>
           )}
-        </MarketDataCp>
-      </SidebarCp>
+        </div>
+      </div>
 
       {/* chart */}
       <CoinInfo coin={coin} />
@@ -197,3 +153,55 @@ const CoinPage = () => {
 };
 
 export default CoinPage;
+
+const ContainerCp = styled.div`
+  display: flex;
+  background: #151829;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar_coinpage {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    border-right: 2px solid grey;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  .headingcp {
+    font-weight: bold;
+    // margin-bottom: 20px;
+    font-family: Montserrat;
+  }
+  .typos {
+    width: 100%;
+    font-family: Montserrat;
+    text-align: left;
+    padding: 15px 25px;
+  }
+  .market_data {
+    align-self: start;
+    padding: 15px 25px;
+    paddingtop: 10px;
+    width: 100%;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+    }
+    @media (max-width: 400px) {
+      align-items: start;
+    }
+  }
+`;

@@ -1,25 +1,6 @@
 import React from "react";
-import { styled } from "@mui/system";
+import styled from "styled-components";
 
-const SelectBtn = styled("span")(({ theme }) => ({
-  border: "1px solid gold",
-  borderRadius: 5,
-  padding: 10,
-  paddingLeft: 20,
-  paddingRight: 20,
-  fontFamily: "Montserrat",
-  cursor: "pointer",
-  "&:hover": {
-    backgroundColor: "gold",
-    color: "#000",
-  },
-  width: "22%",
-  margin: 5,
-  [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    display: "grid",
-  },
-}));
 const SelectButton = ({ children, selected, onClick }) => {
   return (
     <SelectBtn
@@ -36,3 +17,23 @@ const SelectButton = ({ children, selected, onClick }) => {
 };
 
 export default SelectButton;
+
+const SelectBtn = styled.div`
+  border: 1px solid gold;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: Montserrat;
+  cursor: pointer;
+  &:hover {
+    background-color: gold;
+    color: #000;
+  }
+  width: 22%;
+  margin: 5px;
+  @media (max-width: 600px) {
+    width: 100%;
+    display: grid;
+  }
+`;

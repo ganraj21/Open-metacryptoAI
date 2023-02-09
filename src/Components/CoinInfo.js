@@ -90,29 +90,28 @@ const CoinInfo = ({ coin }) => {
 export default CoinInfo;
 
 const Container = styled.div`
- width: 75%;
+  width: 75%;
   display: flex;
   flex-direction: column;
-  align-items: center
-  justify-content: center
-  margin-top: 25px,
-  padding: 40px,
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  padding: 40px;
   @media (max-width: 600px) {
     width: 100%;
     margin-top: 0;
     padding: 20px;
     padding-top: 0;
   }
-  .chartbtn{
-  display: flex;
-  margin-top: 20px;
-  justify-content: space-around;
-  width: 100%;
-  @media (max-width: 600px) {
-    display: grid;
-    grid-auto-flow: column dense;
-    grid-template-rows: 50px 50px;
+  .chartbtn {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+    width: 100%;
+    @media (max-width: 600px) {
+      display: grid;
+      grid-auto-flow: column dense;
+      grid-template-rows: 50px 50px;
+    }
   }
-
-  }
- `;
+`;

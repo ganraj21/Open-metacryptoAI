@@ -4,17 +4,13 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import styled from "styled-components";
-
+import Form from "react-bootstrap/Form";
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 const fontfs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
-// const TestFieldStyles = styled(TextField)(({ theme }) => ({
-//   marginBottom: "20px",
-//   width: "100%",
-// }));
 const CoinsTable = () => {
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
@@ -41,34 +37,26 @@ const CoinsTable = () => {
 
   return (
     <Typographystyle>
-      <div style={{ textAlign: "center" }}>
-        <h4>Cryptocurrency Prices by Market Cap</h4>
-
-        <div
-          className="textfield"
-          id="cryptoinfo"
-          label="Search For a Crypto Currency.."
-          variant="outlined"
-          onChange={(e) => setSearch(e.target.value)}
-        ></div>
+      <div style={{ textAlign: "center", width: "100%" }}>
+        <h4 className="headinghf">Cryptocurrency Prices by Market Cap</h4>
+        <div className="input_div">
+          <input
+            placeholder="Search For a Crypto Currency.."
+            className="textfield "
+            id="cryptoinfo"
+            onChange={(e) => setSearch(e.target.value)}
+          ></input>
+        </div>
 
         <div className="table_container">
           {loading ? (
             <ProgressBar style={{ backgroundColor: "gold" }} />
           ) : (
-            <Table style={{ width: "80%" }}>
+            <Table responsive>
               <thead style={{ backgroundColor: "#EEBC1D" }}>
                 <tr className="tablecell">
                   {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
-                    <th
-                      // className="tablecell"
-                      style={{
-                        color: "black",
-                        fontWeight: "700",
-                      }}
-                      key={head}
-                      align={head === "Coin" ? "" : "right"}
-                    >
+                    <th className="tablecell headtable" key={head}>
                       {head}
                     </th>
                   ))}
@@ -81,14 +69,11 @@ const CoinsTable = () => {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
                       <tr
-                        // className="rowstyle"
+                        className="rowstyle"
                         onClick={() => navigate(`/coins/${row.id}`)}
                         key={row.name}
                       >
-                        <td
-                          component="th"
-                          // className="tablecell"
-                        >
+                        <td component="th" className="tablecell">
                           <img
                             src={row?.image}
                             alt={row.name}
@@ -114,15 +99,12 @@ const CoinsTable = () => {
                             </span>
                           </div>
                         </td>
-                        <td
-                          align="right"
-                          // className="tablecell"
-                        >
+                        <td align="right" className="tablecell">
                           {symbol}
                           {numberWithCommas(row.current_price.toFixed(2))}
                         </td>
                         <td
-                          // className="tablecell"
+                          className="tablecell"
                           align="right"
                           style={{
                             color: profit > 0 ? "rgb(14, 203, 129)" : "red",
@@ -132,10 +114,7 @@ const CoinsTable = () => {
                           {profit && "+"}
                           {row.price_change_percentage_24h.toFixed(2)}%
                         </td>
-                        <td
-                          // className="tablecell"
-                          align="right"
-                        >
+                        <td className="tablecell" align="right">
                           {symbol}
                           {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
@@ -175,6 +154,30 @@ const Typographystyle = styled.div`
     }
   }
 
+  .headinghf {
+    font-size: 27px;
+    padding: 20px;
+    margin: 15px 0;
+  }
+  .input_div {
+    width: 100%;
+    padding: 0px 16px;
+  }
+  .textfield {
+    margin-bottom: 20px;
+    width: 80%;
+    height: 60px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #898989;
+    color: #fff;
+    padding-left: 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+  }
   .table_container {
     width: 100%;
     display: flex;
@@ -182,16 +185,29 @@ const Typographystyle = styled.div`
     justify-content: center;
   }
   table {
-    width: 800px;
+    width: 1200px;
     height: 200px;
     border-collapse: collapse;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 
+  .headtable {
+    color: black;
+    font-weight: 700;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    @media (max-width: 600px) {
+      width: 200px;
+    }
+  }
   th {
     border: none;
-    width: 115px;
+    width: 100%;
     @media (max-width: 600px) {
-      width: 90%;
+      width: 200px;
     }
   }
   tr {
@@ -201,13 +217,17 @@ const Typographystyle = styled.div`
   }
   td {
     gap: 15px;
-    fontfamily: ${fontfs};
+    font-family: ${fontfs};
     color: #fff;
-    text-align: center;
     border: none;
-    width: 115px;
+    width: 100%;
+    height: 110px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media (max-width: 600px) {
-      width: 90%;
+      width: 200px;
     }
   }
 
@@ -223,5 +243,6 @@ const Typographystyle = styled.div`
   }
   .tablecell {
     display: flex;
+    justify-content: center;
   }
 `;

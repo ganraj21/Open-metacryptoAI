@@ -9,7 +9,7 @@ import Login from "./Components/Authentication/Login";
 import Signup from "./Components/Authentication/Signup";
 
 const Div = styled("div")(({ theme }) => ({
-  backgroundColor: "#232629",
+  backgroundColor: "#151829",
   color: "#fff",
   minHeight: 100,
 }));
