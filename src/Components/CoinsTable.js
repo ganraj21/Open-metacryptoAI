@@ -5,9 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import styled from "styled-components";
 
-export function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 const fontfs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
@@ -99,13 +96,12 @@ const CoinsTable = () => {
                             </span>
                           </div>
                         </td>
-                        <td align="right" className="tablecell">
+                        <td className="tablecell">
                           {symbol}
-                          {numberWithCommas(row.current_price.toFixed(2))}
+                          {row.current_price.toFixed(2).toLocaleString()}
                         </td>
                         <td
                           className="tablecell"
-                          align="right"
                           style={{
                             color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                             fontWeight: 600,
@@ -114,12 +110,9 @@ const CoinsTable = () => {
                           {profit && "+"}
                           {row.price_change_percentage_24h.toFixed(2)}%
                         </td>
-                        <td className="tablecell" align="right">
+                        <td className="tablecell">
                           {symbol}
-                          {numberWithCommas(
-                            row.market_cap.toString().slice(0, -6)
-                          )}
-                          M
+                          {row.market_cap.toLocaleString().slice(0, -6)} M
                         </td>
                       </tr>
                     );

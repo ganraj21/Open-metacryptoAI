@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
 import styled from "styled-components";
@@ -96,15 +95,14 @@ export default function UserSidebar() {
                       WatchList
                     </span>
                     {coins.map((coin) => {
-                      // console.log(coin.id.price_change_24h);
-                      if (watchlist.includes(coin.id)) {
-                        console.log(coin.id.price_change_24h);
+                      if (watchlist.includes(coin.id))
+                        // console.log(coin.id.price_change_24h);
                         return (
-                          <div className="coinstyle">
+                          <div className="coinstyle" key={coin.name}>
                             <span>{coin.name}</span>
                             <span className="coinspancolor">
                               {symbol}
-                              {numberWithCommas(coin.current_price.toFixed(2))}
+                              {coin.current_price.toFixed(2).toLocaleString()}
                               <span>
                                 <AiFillDelete
                                   style={{ cursor: "pointer" }}
@@ -115,7 +113,6 @@ export default function UserSidebar() {
                             </span>
                           </div>
                         );
-                      }
                     })}
                   </div>
                 </div>

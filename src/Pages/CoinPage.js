@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import CoinInfo from "../Components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import styled from "styled-components";
@@ -105,9 +104,11 @@ const CoinPage = () => {
             &nbsp; &nbsp;
             <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {symbol}
-              {numberWithCommas(
-                coin?.market_data.current_price[currency.toLowerCase()]
-              )}
+              {
+                coin?.market_data.current_price[
+                  currency.toLowerCase().toLocaleString()
+                ]
+              }
             </h5>
           </span>
           <span>
@@ -115,12 +116,11 @@ const CoinPage = () => {
             &nbsp; &nbsp;
             <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {symbol}
-              {numberWithCommas(
-                coin?.market_data.market_cap[currency.toLowerCase()]
-                  .toString()
-                  .slice(0, -6)
-              )}
-              M
+              {
+                coin?.market_data.market_cap[
+                  currency.toLowerCase().toLocaleString()
+                ]
+              }
             </h5>
           </span>
           {user && (
