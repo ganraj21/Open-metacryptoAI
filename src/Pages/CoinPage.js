@@ -19,6 +19,7 @@ const CoinPage = () => {
     const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
   };
+
   console.log(coin);
 
   useEffect(() => {
@@ -116,11 +117,10 @@ const CoinPage = () => {
             &nbsp; &nbsp;
             <h5 className="typos" style={{ fontFamily: "Montserrat" }}>
               {symbol}
-              {
-                coin?.market_data.market_cap[
-                  currency.toLowerCase().toLocaleString()
-                ]
-              }
+              {coin?.market_data.market_cap[currency.toLowerCase()]
+                .toLocaleString()
+                .slice(0, -6)}
+              M
             </h5>
           </span>
           {user && (
