@@ -146,7 +146,6 @@ export default function UserSidebar() {
   // console.log(coins);
   return (
     <div>
-      <div>{<i class="fas fa-regular fa-angle-left"></i>}</div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <AvatarStyles

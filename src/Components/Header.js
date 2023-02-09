@@ -1,74 +1,71 @@
-import { MenuItem, Toolbar, Select } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import AppBar from "@mui/material/AppBar";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import AuthModal from "./Authentication/AuthModal";
 import UserSidebar from "./Authentication/UserSidebar";
-import { styled } from "@mui/system";
+import styled from "styled-components";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
 
-const Appbar = styled(AppBar)(({ theme }) => ({
-  height: "67px",
-  background: "#9641da78",
-  backdropFilter: "blur(11px)",
-  position: "sticky",
-  top: 0,
-  zIndex: 100,
-  [theme.breakpoints.down("sm")]: {
-    padding: "5px",
-  },
-}));
-const AppTitle = styled(Typography)(({ theme }) => ({
-  flex: 1,
-  fontSize: "24px",
-  color: "#fff",
-  fontFamily:
-    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
-
-  cursor: "pointer",
-}));
-const Selecth = styled(Select)(({ theme }) => ({
-  width: 100,
-  height: 40,
-  marginLeft: 15,
-  color: "#fff",
-}));
 const Header = () => {
   const navigate = useNavigate();
 
   const { currency, setCurrency, user } = CryptoState();
 
   console.log(currency);
-  const darkTheme = createTheme({ palette: { mode: "dark" } });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <Appbar color="transparent" position="static">
-        <Container sx={{ padding: 0 }}>
-          <Toolbar>
-            <AppTitle onClick={() => navigate("/")} variant="h6">
-              MetaCrypto
-            </AppTitle>
-
-            <Selecth
-              variant="outlined"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+    <NavbarContainer>
+      <Navbar className="appbar">
+        <Container>
+          <h2 className="app_title" onClick={() => navigate("/")}>
+            MetaCrypto
+          </h2>
+          <div style={{ display: "flex" }}>
+            <Form.Select
+              aria-label="Default select example"
+              className="select_section"
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
-              <MenuItem value={"INR"}>INR</MenuItem>
-              <MenuItem value={"USD"}>USD</MenuItem>
-            </Selecth>
+              <option value={"INR"}>INR</option>
+              <option value={"USD"}>USD</option>
+            </Form.Select>
             {user ? <UserSidebar /> : <AuthModal />}
-          </Toolbar>
+          </div>
         </Container>
-      </Appbar>
-    </ThemeProvider>
+      </Navbar>
+    </NavbarContainer>
   );
 };
 
 export default Header;
+
+const NavbarContainer = styled.div`
+.appbar{
+  height: 67px;
+  background: #9641da78;
+  backdrop-filter: blur(11px);
+  position: sticky;
+  top: 0,
+  z-index: 100,
+  @media (max-width: 600px) {
+    padding: 5px;
+  }
+}
+.app_title{
+  flex: 1,
+  font-size: 24px;
+  color: #fff;
+  fontFamily: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+.select_section{
+  width: 100px;
+  height: 40px;
+  marginLeft: 15px;
+  color: #000;
+  border : none;
+}
+`;

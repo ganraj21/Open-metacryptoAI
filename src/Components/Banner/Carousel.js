@@ -94,6 +94,7 @@ const CarouselStyle = styled.div`
   align-items: center;
   @media (max-width: 600px) {
     margin-top: 48px;
+    padding-bottom: 0;
   }
 
   .carouselitems {
@@ -114,7 +115,7 @@ const CarouselStyle = styled.div`
     text-decoration: none;
     @media (max-width: 600px) {
       width: 90%;
-      height: 174px;
+      height: 200px;
       padding: 10px;
       display: flex;
       align-items: center;

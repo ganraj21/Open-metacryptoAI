@@ -2,26 +2,32 @@ import Carousel from "./Carousel";
 import { HashLink } from "react-router-hash-link";
 import bg_banner from "../Images/banner2.jpg";
 import styled from "styled-components";
+import { Button, Container } from "react-bootstrap";
 
 export default function Banner() {
   return (
     <BannerDiv>
-      <div className="bannercontent">
-        <div className="tagline">
-          <div className="tline" variant="h2">
-            Open Meta CryptoAI
-          </div>
-          <div className="subtitle" variant="subtitle2">
-            Get all the Info regarding your favorite Crypto Currency
-          </div>
-          <HashLink to="/#cryptoinfo">
-            <div className="startbtn" variant="contained" color="primary">
-              ` Gets Started <span>-</span>
+      <Container>
+        <div className="bannercontent">
+          <div className="tagline">
+            <h2 className="tline" variant="h2">
+              Open Meta CryptoAI
+            </h2>
+            <div className="subtitle" variant="subtitle2">
+              Get all the Info regarding your favorite Crypto Currency
             </div>
-          </HashLink>
+            <HashLink to="/#cryptoinfo" className="hashlinkdiv">
+              <Button className="startbtn" variant="warning">
+                Gets Started
+                <span>
+                  <i class="fas fa-sharp fa-solid fa-arrow-right"></i>
+                </span>
+              </Button>
+            </HashLink>
+          </div>
+          <Carousel />
         </div>
-        <Carousel />
-      </div>
+      </Container>
     </BannerDiv>
   );
 }
@@ -33,6 +39,7 @@ const BannerDiv = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: fill;
+  margin:0;
 
   .bannercontent {
     height: 650px;
@@ -46,23 +53,27 @@ const BannerDiv = styled.div`
     }
   },
   .tagline{
-    padding-top: 20px;
     display: flex;
     height: 60%;
     flex-direction: column;
     justify-content: center;
     text-align: center
-    align-items: center
-    gap: 6px
+    gap: 6px;
+    align-items: center;
+    @media (max-width: 600px) {
+      height: 700px;
+      width: 90%;
+      margin-left: 20px;
+    }
   }
   .tline{
    font-weight: bold;
-  margin-bottom: 15px;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif;
+   margin-bottom: 15px;
+   font-size: 3.75rem;
+   font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif;
 
   @media (max-width: 600px) {
-    font-size: 2.75rem;
-    padding: 48px 0 0 0;
+    font-size: 3rem;
   },
   }
   .subtitle{
@@ -71,15 +82,27 @@ const BannerDiv = styled.div`
   font-family: Montserrat;
   @media (max-width: 600px) {
     padding: 15px;
+    margin-left: -10px
   }
   }
 
+  .hashlinkdiv{
+    @media (max-width: 600px) {
+      width: 100%;
+      margin-left: 10px;
+    }
+
+  }
   .startbtn{
     margin: 18px 0 0 0;
-    gap: 10px
-    height: 45px
-    background: gold
-    color: #000
+    width: 180px;
+    height: 45px;
+    font-size: 18px;
+    gap: 10px;
+    background:gold;
+    span {
+      margin-left :9px;
+    }
     &:hover {
       background-color: #9641da78
       color: #fff

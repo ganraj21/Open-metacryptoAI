@@ -8,35 +8,7 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import SelectButton from "./SelectButton";
-import { styled } from "@mui/system";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-const Containerci = styled("div")(({ theme }) => ({
-  width: "75%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  marginTop: 25,
-  padding: 40,
-  [theme.breakpoints.down("md")]: {
-    width: "100%",
-    marginTop: 0,
-    padding: 20,
-    paddingTop: 0,
-  },
-}));
-const ChartBtn = styled("div")(({ theme }) => ({
-  display: "flex",
-  marginTop: 20,
-  justifyContent: "space-around",
-  width: "100%",
-  [theme.breakpoints.down("sm")]: {
-    display: "grid",
-    gridAutoFlow: "column dense",
-    gridTemplateRows: "50px 50px",
-  },
-}));
+import styled from "styled-components";
 
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
@@ -55,72 +27,92 @@ const CoinInfo = ({ coin }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, days]);
 
-  const darkTheme = createTheme({ palette: { mode: "dark" } });
-
   const profit = coin.market_data.price_change_24h > 0;
   console.log(coin.market_data.price_change_24h);
 
   return (
     <>
-      <ThemeProvider theme={darkTheme}>
-        <Containerci>
-          {/* chart */}
+      <Container>
+        {/* chart */}
 
-          {!historicData ? (
-            <CircularProgress
-              style={{ color: "gold" }}
-              size={150}
-              thikness={1}
-            />
-          ) : (
-            <>
-              <Line
-                data={{
-                  labels: historicData.map((coin) => {
-                    let date = new Date(coin[0]);
-                    let time =
-                      date.getHours() > 12
-                        ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
-                        : `${date.getHours()}:${date.getMinutes()} AM`;
+        {!historicData ? (
+          <CircularProgress style={{ color: "gold" }} size={150} thikness={1} />
+        ) : (
+          <>
+            <Line
+              data={{
+                labels: historicData.map((coin) => {
+                  let date = new Date(coin[0]);
+                  let time =
+                    date.getHours() > 12
+                      ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
+                      : `${date.getHours()}:${date.getMinutes()} AM`;
 
-                    return days === 1 ? time : date.toLocaleDateString();
-                  }),
+                  return days === 1 ? time : date.toLocaleDateString();
+                }),
 
-                  datasets: [
-                    {
-                      data: historicData.map((coin) => coin[1]),
-                      label: `Past(Past ${days} Days) in ${currency}`,
-                      borderColor: profit ? "#16c784" : "#ea3943",
-                    },
-                  ],
-                }}
-                options={{
-                  elements: {
-                    point: {
-                      radius: 1,
-                    },
+                datasets: [
+                  {
+                    data: historicData.map((coin) => coin[1]),
+                    label: `Past(Past ${days} Days) in ${currency}`,
+                    borderColor: profit ? "#16c784" : "#ea3943",
                   },
-                }}
-              />
-              <ChartBtn>
-                {chartDays.map((day) => (
-                  <SelectButton
-                    key={day.value}
-                    onClick={() => setDays(day.value)}
-                    selected={day.value === days}
-                  >
-                    {day.label}
-                  </SelectButton>
-                ))}
-              </ChartBtn>
-            </>
-          )}
+                ],
+              }}
+              options={{
+                elements: {
+                  point: {
+                    radius: 1,
+                  },
+                },
+              }}
+            />
+            <div className="chartbtn">
+              {chartDays.map((day) => (
+                <SelectButton
+                  key={day.value}
+                  onClick={() => setDays(day.value)}
+                  selected={day.value === days}
+                >
+                  {day.label}
+                </SelectButton>
+              ))}
+            </div>
+          </>
+        )}
 
-          {/* buttons */}
-        </Containerci>
-      </ThemeProvider>
+        {/* buttons */}
+      </Container>
     </>
   );
 };
 
 export default CoinInfo;
+
+const Container = styled.div`
+ width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+  justify-content: center
+  margin-top: 25px,
+  padding: 40px,
+  @media (max-width: 600px) {
+    width: 100%;
+    margin-top: 0;
+    padding: 20px;
+    padding-top: 0;
+  }
+  .chartbtn{
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-around;
+  width: 100%;
+  @media (max-width: 600px) {
+    display: grid;
+    grid-auto-flow: column dense;
+    grid-template-rows: 50px 50px;
+  }
+
+  }
+ `;
