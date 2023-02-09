@@ -1,20 +1,9 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { styled } from "@mui/system";
-
-const BoxStyle = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px",
-  marginTop: "10px",
-  fontFamily:
-    "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif",
-}));
+import styled from "styled-components";
+import { Button } from "react-bootstrap";
 
 const Login = ({ handleclose }) => {
   const [email, setEmail] = useState();
@@ -49,23 +38,17 @@ const Login = ({ handleclose }) => {
   };
   return (
     <BoxStyle p={3}>
-      <TextField
-        id="outlined-basic"
-        label="Enter Email"
-        variant="outlined"
+      <input
+        placeholder="Enter Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        fullWidth
       />
-      <TextField
-        id="outlined-basic"
-        label="Enter Password"
-        variant="outlined"
+      <input
+        placeholder="Enter Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        fullWidth
       />
       <Button
         variant="contained"
@@ -79,3 +62,12 @@ const Login = ({ handleclose }) => {
   );
 };
 export default Login;
+
+const BoxStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
+    Helvetica, Arial, sans-serif;
+`;

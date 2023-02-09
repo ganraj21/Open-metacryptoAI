@@ -1,7 +1,6 @@
-import { Snackbar, Alert } from "@mui/material";
 import React from "react";
 import { CryptoState } from "../CryptoContext";
-
+import Alert from "react-bootstrap/Alert";
 const Alerts = () => {
   const { alert, setAlert } = CryptoState();
   const handleClose = (event, reason) => {
@@ -12,7 +11,12 @@ const Alerts = () => {
     setAlert({ open: false });
   };
   return (
-    <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
+    <div
+      className="snackbar"
+      open={alert.open}
+      autoHideDuration={3000}
+      onClose={handleClose}
+    >
       <Alert
         onClose={handleClose}
         elevation={10}
@@ -21,7 +25,7 @@ const Alerts = () => {
       >
         {alert.message}
       </Alert>
-    </Snackbar>
+    </div>
   );
 };
 

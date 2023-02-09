@@ -4,15 +4,9 @@ import Alerts from "./Components/Alerts";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
-import { styled } from "@mui/system";
+import styled from "styled-components";
 import Login from "./Components/Authentication/Login";
 import Signup from "./Components/Authentication/Signup";
-
-const Div = styled("div")(({ theme }) => ({
-  backgroundColor: "#151829",
-  color: "#fff",
-  minHeight: 100,
-}));
 
 function App() {
   return (
@@ -32,3 +26,9 @@ function App() {
 }
 
 export default App;
+
+const Div = styled.div`
+  background-color: #151829;
+  color: #fff;
+  min-height: 100;
+`;

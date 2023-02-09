@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { CryptoState } from "../CryptoContext";
 import { HistoricalChart } from "../config/api";
 import { chartDays } from "../config/data";
-import CircularProgress from "@mui/material/CircularProgress";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
@@ -36,7 +35,7 @@ const CoinInfo = ({ coin }) => {
         {/* chart */}
 
         {!historicData ? (
-          <CircularProgress style={{ color: "gold" }} size={150} thikness={1} />
+          ""
         ) : (
           <>
             <Line

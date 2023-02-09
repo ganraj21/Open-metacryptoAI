@@ -1,17 +1,10 @@
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { styled } from "@mui/system";
+import styled from "styled-components";
+import { Button } from "react-bootstrap";
 
-const BoxStyle = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px",
-}));
 const Signup = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -51,41 +44,45 @@ const Signup = ({ handleclose }) => {
     }
   };
   return (
-    <BoxStyle p={3}>
-      <TextField
-        variant="outlined"
-        type="email"
-        label="Enter Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        fullWidth
-      />
-      <TextField
-        variant="outlined"
-        type="password"
-        label="Enter Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        fullWidth
-      />
-      <TextField
-        variant="outlined"
-        type="password"
-        label="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        fullWidth
-      />
-      <Button
-        variant="contained"
-        size="large"
-        style={{ backgroundColor: "#EEBC1D" }}
-        onClick={handleSubmit}
-      >
-        Sign Up
-      </Button>
+    <BoxStyle>
+      <div className="boxdiv">
+        <input
+          placeholder="email"
+          label="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          placeholder="password"
+          label="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          placeholder="password"
+          label="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          size="large"
+          style={{ backgroundColor: "#EEBC1D" }}
+          onClick={handleSubmit}
+        >
+          Sign Up
+        </Button>
+      </div>
     </BoxStyle>
   );
 };
 
 export default Signup;
+
+const BoxStyle = styled.div`
+  .boxdiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+`;

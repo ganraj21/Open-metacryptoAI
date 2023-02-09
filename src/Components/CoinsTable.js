@@ -4,7 +4,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import styled from "styled-components";
-import Form from "react-bootstrap/Form";
+
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

@@ -1,95 +1,16 @@
 import React, { useState } from "react";
-import { Drawer, Button, Avatar } from "@mui/material";
 import { CryptoState } from "../../CryptoContext";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
-import { styled } from "@mui/system";
+import styled from "styled-components";
+import { Button, Container } from "react-bootstrap";
 
 const font_fs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
-const Containers = styled("div")(({ theme }) => ({
-  width: 350,
-  padding: 25,
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  fontFamily: font_fs,
-  background: "#2685d885",
-  backdropFilter: "blur(11px)",
-}));
-const Profile = styled("div")(({ theme }) => ({
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "20px",
-  height: "92%",
-}));
-const SpanStyle = styled("span")(({ theme }) => ({
-  width: "100%",
-  fontSize: 25,
-  textAlign: "center",
-  fontWeight: "bolder",
-  wordWrap: "break-word",
-}));
-const AvatarStyles = styled(Avatar)(({ theme }) => ({
-  height: 38,
-  width: 38,
-  marginLeft: 15,
-  cursor: "pointer",
-  backgroundColor: "#EEBC1D",
-}));
-const Avatarpic = styled(Avatar)(({ theme }) => ({
-  width: 100,
-  height: 100,
-  cursor: "pointer",
-  backgroundColor: "#EEBC1D",
-  objectFit: "contain",
-}));
-
-const UserLogout = styled(Button)(({ theme }) => ({
-  height: "6%",
-  width: "100%",
-  backgroundColor: "#EEBC1D",
-  marginTop: 20,
-  fontFamily: font_fs,
-}));
-
-const Watchlist = styled("div")(({ theme }) => ({
-  flex: 1,
-  width: "100%",
-  backgroundColor: "#e2e2e270",
-  borderRadius: 10,
-  padding: 15,
-  paddingTop: 10,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: 12,
-  overflowY: "scroll",
-  fontFamily: font_fs,
-}));
-
-const CoinStyle = styled("div")(({ theme }) => ({
-  padding: 10,
-  borderRadius: 5,
-  color: "black",
-  width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  backgroundColor: "#d3c5a270",
-  backdropFilter: "blur(11px)",
-}));
-const CoinspanColor = styled("span")(({ theme }) => ({
-  display: "flex",
-  gap: 8,
-  // color: coin.id.price_change_24h > 0 ? "#02a100" : "#d8252f",
-}));
 export default function UserSidebar() {
   const [state, setState] = useState({
     right: false,
@@ -148,58 +69,146 @@ export default function UserSidebar() {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <AvatarStyles
+          <img
+            className="avatarstyles"
             onClick={toggleDrawer(anchor, true)}
             src={user.photoURL}
             alt={user.displayName || user.email}
           />
-          <Drawer
+          <Container
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            <Containers>
-              <Profile>
-                <Avatarpic
-                  src={user.photoURL}
-                  alt={user.displayName || user.email}
-                />
-                <SpanStyle>{user.displayName || user.email}</SpanStyle>
-                <Watchlist>
-                  <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
-                    WatchList
+            <UserModalStyles>
+              <div className="container">
+                <div className="profilediv">
+                  <img
+                    className="avatarpic"
+                    src={user.photoURL}
+                    alt={user.displayName || user.email}
+                  />
+                  <span className="spanstyle">
+                    {user.displayName || user.email}
                   </span>
-                  {coins.map((coin) => {
-                    // console.log(coin.id.price_change_24h);
-                    if (watchlist.includes(coin.id)) {
-                      console.log(coin.id.price_change_24h);
-                      return (
-                        <CoinStyle>
-                          <span>{coin.name}</span>
-                          <CoinspanColor>
-                            {symbol}
-                            {numberWithCommas(coin.current_price.toFixed(2))}
-                            <span>
-                              <AiFillDelete
-                                style={{ cursor: "pointer" }}
-                                fontSize="16"
-                                onClick={() => removeFromWatchlist(coin)}
-                              />
+                  <div className="watchlist">
+                    <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
+                      WatchList
+                    </span>
+                    {coins.map((coin) => {
+                      // console.log(coin.id.price_change_24h);
+                      if (watchlist.includes(coin.id)) {
+                        console.log(coin.id.price_change_24h);
+                        return (
+                          <div className="coinstyle">
+                            <span>{coin.name}</span>
+                            <span className="coinspancolor">
+                              {symbol}
+                              {numberWithCommas(coin.current_price.toFixed(2))}
+                              <span>
+                                <AiFillDelete
+                                  style={{ cursor: "pointer" }}
+                                  fontSize="16"
+                                  onClick={() => removeFromWatchlist(coin)}
+                                />
+                              </span>
                             </span>
-                          </CoinspanColor>
-                        </CoinStyle>
-                      );
-                    }
-                  })}
-                </Watchlist>
-              </Profile>
-              <UserLogout variant="contained" onClick={logout}>
-                Logout
-              </UserLogout>
-            </Containers>
-          </Drawer>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
+                <Button
+                  className="logoutbtn"
+                  variant="contained"
+                  onClick={logout}
+                >
+                  Logout
+                </Button>
+              </div>
+            </UserModalStyles>
+          </Container>
         </React.Fragment>
       ))}
     </div>
   );
 }
+
+const UserModalStyles = styled.div`
+  .containers {
+    width: 350ps;
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    fontfamily: ${font_fs};
+    background: #2685d885;
+    backdrop-filter: blur(11px);
+  }
+  .avatarstyles {
+    height: 38px;
+    width: 38px;
+    margin-left: 15px;
+    cursor: pointer;
+    background-color: #eebc1d;
+  }
+  .avatarpic {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-color: #eebc1d;
+    object-fit: contain;
+  }
+  .profilediv {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 92%;
+  }
+  .spanstyle {
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bolder;
+    word-wrap: break-word;
+  }
+  .logoutbtn {
+    height: 6%;
+    width: 100%;
+    background-color: #eebc1d;
+    margin-top: 20px;
+    font-family: ${font_fs};
+  }
+  .watchlist {
+    flex: 1;
+    width: 100%;
+    background-color: #e2e2e270;
+    border-radius: 10px;
+    padding: 15px;
+    padding-top: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12;
+    overflow-y: scroll;
+    font-family: ${font_fs};
+  }
+  .coinstyle {
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d3c5a270;
+    backdrop-filter: blur(11px);
+  }
+  .coinspancolor {
+    display: flex;
+    gap: 8;
+  }
+`;

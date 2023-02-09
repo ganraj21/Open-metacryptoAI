@@ -1,4 +1,3 @@
-import { LinearProgress } from "@mui/material";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -28,8 +27,6 @@ const CoinPage = () => {
     fetchCoin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!coin) return <LinearProgress sx={{ backgroundColor: "gold" }} />;
 
   const inWatchlist = watchlist.includes(coin?.id);
 
