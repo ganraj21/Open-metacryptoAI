@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import CoinInfo from "../Components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from "../Components/CoinsTable";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -90,7 +89,7 @@ const CoinPage = () => {
         />
         <h3 className="headingcp">{coin?.name}</h3>
         <p className="typos" style={{ margin: 0 }}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
+          {coin?.description.en.split(". ")[0]}.
         </p>
 
         <div className="market_data">
