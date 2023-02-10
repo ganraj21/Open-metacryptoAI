@@ -10,6 +10,7 @@ const Footer = () => {
           color: "gray",
           background: "gray",
           width: "100%",
+          margin: 0,
         }}
       ></hr>
       <div
@@ -17,7 +18,7 @@ const Footer = () => {
           display: "flex",
           height: "72px",
           alignItems: "center",
-          padding: "18px",
+          padding: "27px",
           flexDirection: "row",
         }}
       >
@@ -29,8 +30,8 @@ const Footer = () => {
             flexDirection: "column",
           }}
         >
-          <p style={{ margin: 0 }}>Created by Ganesh Ghadge. </p>
-          <p style={{ margin: 0 }}>© 2023 MetaCrypto</p>
+          <p style={{ margin: 0 }}>Created by Ganesh Ghadge</p>
+          <p style={{ margin: 0 }}>© 2023 MetaCrypto.</p>
         </div>
       </div>
     </>
