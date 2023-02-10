@@ -21,12 +21,12 @@ function App() {
   };
 
   if (alert.type === "error") {
-    if (alert.message)
+    if (alert.message && alert.open)
       toast.error(alert.message, {
         toastOptions,
       });
   } else {
-    if (alert.message)
+    if (alert.message && alert.open)
       toast.success(alert.message, {
         toastOptions,
       });

@@ -71,7 +71,10 @@ const NavbarContainer = styled.div`
   }
   .formselectbtns {
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 3px;
+    gap: 10px;
     @media (max-width: 360px) {
       flex-direction: column;
       gap: 6px;

@@ -5,12 +5,13 @@ import { auth, db } from "../../firebase";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
 import styled from "styled-components";
-import { Button, Container } from "react-bootstrap";
-
+import { Button, Modal } from "react-bootstrap";
+import defaultprofile from "../Images/defaultavatar.jpg";
 const font_fs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
 
-export default function UserSidebar() {
+export default function UserSidebar({ handleclose }) {
+  const [show, setShow] = useState(false);
   const [state, setState] = useState({
     right: false,
   });
@@ -65,26 +66,28 @@ export default function UserSidebar() {
   };
   // console.log(coins);
   return (
-    <div>
+    <div className="usersidebar">
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <img
             className="avatarstyles"
-            onClick={toggleDrawer(anchor, true)}
-            src={user.photoURL}
+            onClick={() => setShow(true)}
+            src={user.photoURL ? user.photoURL : defaultprofile}
             alt={user.displayName || user.email}
+            style={{ width: "36px", borderRadius: "50%" }}
           />
-          <Container
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
+          <Modal
+            show={show}
+            onHide={() => setShow(false)}
+            dialogClassName="modal-90w"
+            aria-labelledby="example-custom-modal-styling-title"
           >
             <UserModalStyles>
-              <div className="container">
+              <div className="container" onClick={() => handleclose()}>
                 <div className="profilediv">
                   <img
                     className="avatarpic"
-                    src={user.photoURL}
+                    src={user.photoURL ? user.photoURL : defaultprofile}
                     alt={user.displayName || user.email}
                   />
                   <span className="spanstyle">
@@ -94,25 +97,26 @@ export default function UserSidebar() {
                     <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
                       WatchList
                     </span>
+
+                    {/* // console.log(coin.id.price_change_24h); */}
                     {coins.map((coin) => {
                       if (watchlist.includes(coin.id))
-                        console.log(coin.id.price_change_24h);
-                      return (
-                        <div className="coinstyle" key={coin.name}>
-                          <span>{coin.name}</span>
-                          <span className="coinspancolor">
-                            {symbol}
-                            {coin.current_price.toFixed(2).toLocaleString()}
-                            <span>
-                              <AiFillDelete
-                                style={{ cursor: "pointer" }}
-                                fontSize="16"
-                                onClick={() => removeFromWatchlist(coin)}
-                              />
+                        return (
+                          <div className="coinstyle" key={coin.name}>
+                            <span>{coin.name}</span>
+                            <span className="coinspancolor">
+                              {symbol}
+                              {coin.current_price.toFixed(2).toLocaleString()}
+                              <span>
+                                <AiFillDelete
+                                  style={{ cursor: "pointer" }}
+                                  fontSize="16"
+                                  onClick={() => removeFromWatchlist(coin)}
+                                />
+                              </span>
                             </span>
-                          </span>
-                        </div>
-                      );
+                          </div>
+                        );
                     })}
                   </div>
                 </div>
@@ -125,7 +129,7 @@ export default function UserSidebar() {
                 </Button>
               </div>
             </UserModalStyles>
-          </Container>
+          </Modal>
         </React.Fragment>
       ))}
     </div>
@@ -133,16 +137,21 @@ export default function UserSidebar() {
 }
 
 const UserModalStyles = styled.div`
-  .containers {
+  .container {
     width: 350px;
     padding: 25px;
-    height: 100%;
     display: flex;
+    position: absolute;
+    height: 100vh;
+    right: -375px;
+    top: -28px;
     flex-direction: column;
     font-family: ${font_fs};
     background: #2685d885;
     backdrop-filter: blur(11px);
+    z-index: 100px;
   }
+
   .avatarstyles {
     height: 38px;
     width: 38px;
@@ -156,6 +165,7 @@ const UserModalStyles = styled.div`
     cursor: pointer;
     background-color: #eebc1d;
     object-fit: contain;
+    border-radius: 50%;
   }
   .profilediv {
     flex: 1;
@@ -189,13 +199,14 @@ const UserModalStyles = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12;
+    gap: 12px;
     overflow-y: scroll;
     font-family: ${font_fs};
   }
   .coinstyle {
     padding: 10px;
     border-radius: 5px;
+    margin: 6px;
     color: black;
     width: 100%;
     display: flex;
@@ -206,6 +217,6 @@ const UserModalStyles = styled.div`
   }
   .coinspancolor {
     display: flex;
-    gap: 8;
+    gap: 8px;
   }
 `;

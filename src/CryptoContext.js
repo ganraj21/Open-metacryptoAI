@@ -13,6 +13,7 @@ const CryptoContext = ({ children }) => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -71,6 +72,8 @@ const CryptoContext = ({ children }) => {
         setAlert,
         user,
         watchlist,
+        setShow,
+        show,
       }}
     >
       {children}
