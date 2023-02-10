@@ -90,7 +90,7 @@ export default function AuthModal() {
               >
                 <span>OR</span>
                 <GoogleButton
-                  style={{ width: "90%", outline: "none" }}
+                  style={{ width: "90%", outline: "none", height: "45px" }}
                   onClick={signInWithGoogle}
                 />
               </div>
