@@ -134,12 +134,12 @@ export default function UserSidebar() {
 
 const UserModalStyles = styled.div`
   .containers {
-    width: 350ps;
+    width: 350px;
     padding: 25px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    fontfamily: ${font_fs};
+    font-family: ${font_fs};
     background: #2685d885;
     backdrop-filter: blur(11px);
   }
