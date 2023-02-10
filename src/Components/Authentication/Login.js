@@ -51,11 +51,7 @@ const Login = ({ handleclose }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button
-        variant="contained"
-        style={{ backgroundColor: "#EEBC1D", width: "90%", height: "45px" }}
-        onClick={handleSubmit}
-      >
+      <Button variant="contained" onClick={handleSubmit} className="logbtn">
         Login
       </Button>
     </BoxStyle>
@@ -79,5 +75,14 @@ const BoxStyle = styled.div`
     padding-left: 20px;
     outline: none;
     border: 1px solid gray;
+  }
+  .logbtn {
+    background-color: #eebc1d;
+    width: 90%;
+    height: 45px;
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s ease-in-out;
+    }
   }
 `;

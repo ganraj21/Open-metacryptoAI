@@ -54,7 +54,7 @@ export default function AuthModal() {
           Login
         </Button>
 
-        <Modal show={open} onHide={() => setOpen(false)} className="modalest">
+        <Modal show={open} onHide={() => setOpen(false)}>
           <div className="papers">
             <div className="loguserbtn">
               <Button
@@ -114,11 +114,14 @@ const ModalStyles = styled.div`
     &:hover {
       background-color: #607d8b7a;
     }
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s ease-in-out;
+    }
   }
   .papers {
     width: 400px;
     color: #000;
-    border-radius: 10px;
     padding: 25px 20px;
     background: #787878bd;
     border: 1px solid #3e343499;
@@ -135,14 +138,7 @@ const ModalStyles = styled.div`
     padding: 9px;
   }
   .activebtn {
-    background: red !important;
-  }
-  .modalest {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transperent;
-    backdrop-filter: blur(11px);
+    font-weight: 600;
   }
   .appbarstyle {
     background-color: transparent;

@@ -18,6 +18,7 @@ const CryptoContext = ({ children }) => {
     open: false,
     message: "",
     type: "success",
+    triger: 0,
   });
   const [watchlist, setWatchlist] = useState([]);
 

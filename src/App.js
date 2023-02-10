@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import React, { useEffect } from "react";
 import { CryptoState } from "./CryptoContext";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
@@ -11,7 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const { alert } = CryptoState();
+  const { alert, setAlert } = CryptoState();
   const toastOptions = {
     position: "top-right",
     autoClose: 8000,
@@ -20,17 +21,22 @@ function App() {
     theme: "dark",
   };
 
-  if (alert.type === "error") {
-    if (alert.message && alert.open)
-      toast.error(alert.message, {
-        toastOptions,
-      });
-  } else {
-    if (alert.message && alert.open)
-      toast.success(alert.message, {
-        toastOptions,
-      });
-  }
+  useEffect(() => {
+    if (alert.type === "error") {
+      if (alert.message && alert.open)
+        toast.error(alert.message, {
+          toastOptions,
+        });
+    } else {
+      if (alert.message) {
+        toast.success(alert.message, {
+          toastOptions,
+        });
+        setAlert.triger = 1;
+      }
+    }
+  }, [alert]);
+
   return (
     <BrowserRouter>
       <Div>

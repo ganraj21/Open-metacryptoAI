@@ -63,7 +63,10 @@ export default function UserSidebar({ handleclose }) {
         />
 
         <UserModalStyles>
-          <div className={show ? "container" : "containeractive_style"}>
+          <div
+            className={show ? "container" : "containeractive_style"}
+            data-aos="fade-left"
+          >
             <div className="profilediv">
               <span
                 style={{ width: "100%", marginTop: "-4px" }}
@@ -134,14 +137,17 @@ const UserModalStyles = styled.div`
     height: 100vh;
     flex-direction: column;
     font-family: ${font_fs};
-    background: #2685d885;
-    backdrop-filter: blur(11px);
+    background: #232323;
+    color: #fff;
+    backdrop-filter: blur(5px);
     z-index: 100px;
     float: right;
     right: 0;
     top: 0;
+    transition-timing-function: ease-out;
   }
   .containeractive_style {
+    transition-timing-function: ease-in;
     display: none;
   }
   .avatarstyles {
@@ -164,7 +170,7 @@ const UserModalStyles = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     height: 92%;
   }
   .spanstyle {
@@ -179,7 +185,16 @@ const UserModalStyles = styled.div`
     width: 100%;
     background-color: #eebc1d;
     margin-top: 20px;
+    font-weight: 600;
     font-family: ${font_fs};
+    &:hover {
+      background: gold;
+      color: #000;
+    }
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s ease-in-out;
+    }
   }
   .watchlist {
     flex: 1;
@@ -204,7 +219,7 @@ const UserModalStyles = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #d5d5d5a3;
+    background-color: #e3e3e3b5;
     backdrop-filter: blur(11px);
   }
   .coinspancolor {
