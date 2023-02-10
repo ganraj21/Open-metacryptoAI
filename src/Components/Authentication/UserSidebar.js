@@ -96,23 +96,23 @@ export default function UserSidebar() {
                     </span>
                     {coins.map((coin) => {
                       if (watchlist.includes(coin.id))
-                        // console.log(coin.id.price_change_24h);
-                        return (
-                          <div className="coinstyle" key={coin.name}>
-                            <span>{coin.name}</span>
-                            <span className="coinspancolor">
-                              {symbol}
-                              {coin.current_price.toFixed(2).toLocaleString()}
-                              <span>
-                                <AiFillDelete
-                                  style={{ cursor: "pointer" }}
-                                  fontSize="16"
-                                  onClick={() => removeFromWatchlist(coin)}
-                                />
-                              </span>
+                        console.log(coin.id.price_change_24h);
+                      return (
+                        <div className="coinstyle" key={coin.name}>
+                          <span>{coin.name}</span>
+                          <span className="coinspancolor">
+                            {symbol}
+                            {coin.current_price.toFixed(2).toLocaleString()}
+                            <span>
+                              <AiFillDelete
+                                style={{ cursor: "pointer" }}
+                                fontSize="16"
+                                onClick={() => removeFromWatchlist(coin)}
+                              />
                             </span>
-                          </div>
-                        );
+                          </span>
+                        </div>
+                      );
                     })}
                   </div>
                 </div>

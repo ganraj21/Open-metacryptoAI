@@ -42,6 +42,7 @@ export default function AuthModal() {
       handleClose();
     });
   };
+
   return (
     <div>
       <ModalStyles>
@@ -51,7 +52,7 @@ export default function AuthModal() {
 
         <Modal show={open} onHide={() => setOpen(false)} className="modalest">
           <div className="papers">
-            <Container className="tabstyle">
+            <Container>
               <Tabs
                 defaultActiveKey="profile"
                 id="fill-tab-example"
@@ -60,11 +61,13 @@ export default function AuthModal() {
                 onChange={handleChange}
               >
                 <Tab
+                  className="tab"
                   eventkey="Login"
                   onClick={() => setValue(0)}
                   title="Login"
                 ></Tab>
                 <Tab
+                  className="tab"
                   eventkey="Sign Up"
                   onClick={() => setValue(1)}
                   title="Sign Up"
@@ -102,7 +105,7 @@ const ModalStyles = styled.div`
       background-color: #607d8b7a;
     },
   }
-  .tabstyle{
+  .tab{
     display:flex;
   }
   .modalest {
@@ -113,11 +116,11 @@ const ModalStyles = styled.div`
     backdrop-filter: blur(11px);
   }
   .papers{
-    width: 400px;
-  color: #fff;
+   width: 400px;
+  color: #000;
   border-radius: 10px;
   padding: 25px 20px;
-  background: #2a2c2ed4;
+  background: #787878bd;
   border: 1px solid #3e343499;
   @media (max-width: 600px) {
     width: 90%;

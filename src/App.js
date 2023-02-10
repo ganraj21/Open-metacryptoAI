@@ -1,18 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Alerts from "./Components/Alerts";
+import { CryptoState } from "./CryptoContext";
 import Header from "./Components/Header";
 import CoinPage from "./Pages/CoinPage";
 import Homepage from "./Pages/Homepage";
 import styled from "styled-components";
 import Login from "./Components/Authentication/Login";
 import Signup from "./Components/Authentication/Signup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const { alert } = CryptoState();
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+  if (alert.message)
+    toast.success(alert.message, {
+      toastOptions,
+    });
+
   return (
     <BrowserRouter>
       <Div>
         <Header />
+
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/user/login" element={<Login />} />
@@ -20,7 +36,7 @@ function App() {
           <Route exact path="/coins/:id" element={<CoinPage />} />
         </Routes>
       </Div>
-      <Alerts />
+      <ToastContainer />
     </BrowserRouter>
   );
 }

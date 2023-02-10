@@ -8,7 +8,7 @@ import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import SelectButton from "./SelectButton";
 import styled from "styled-components";
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const CoinInfo = ({ coin }) => {
@@ -37,17 +37,13 @@ const CoinInfo = ({ coin }) => {
         {/* chart */}
 
         {!historicData ? (
-          <Button variant="dark" disabled>
-            <Spinner
-              as="span"
-              variant="light"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-              animation="border"
-            />
-            Loading...
-          </Button>
+          <Spinner
+            as="span"
+            variant="light"
+            role="status"
+            aria-hidden="true"
+            animation="border"
+          />
         ) : (
           <>
             <Line

@@ -3,8 +3,7 @@ import { CryptoState } from "../../CryptoContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import styled from "styled-components";
-import { Button } from "react-bootstrap";
-
+import { Button, InputGroup, Form } from "react-bootstrap";
 const Signup = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -46,19 +45,22 @@ const Signup = ({ handleclose }) => {
   return (
     <BoxStyle>
       <div className="boxdiv">
-        <input
-          placeholder="email"
-          label="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
+        <InputGroup>
+          <Form.Control
+            placeholder="email"
+            aria-label="Enter Email"
+            aria-describedby="basic-addon1"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </InputGroup>
+        <InputGroup
           placeholder="password"
           label="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        <InputGroup
           placeholder="password"
           label="Confirm Password"
           value={confirmPassword}
