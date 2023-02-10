@@ -34,7 +34,6 @@ export default function AuthModal() {
           type: "error",
         });
       });
-
       handleClose();
     });
   };

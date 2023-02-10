@@ -143,8 +143,6 @@ const UserModalStyles = styled.div`
     display: flex;
     position: absolute;
     height: 100vh;
-    right: -375px;
-    top: -28px;
     flex-direction: column;
     font-family: ${font_fs};
     background: #2685d885;
