@@ -4,6 +4,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import styled from "styled-components";
+import { Button, Pagination } from "react-bootstrap";
 
 const fontfs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
@@ -12,6 +13,7 @@ const CoinsTable = () => {
   const [search, setSearch] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
   useEffect(() => {
@@ -120,15 +122,22 @@ const CoinsTable = () => {
             </Table>
           )}
         </div>
-        <div
-          className="paginationstyle"
-          count={(handleSearch()?.length / 10).toFixed(0)}
-          onChange={(_, value) => {
-            setPage(value);
-            window.scroll(0, 450);
-          }}
-          shape="rounded"
-        />
+        <div className="pagination_container">
+          {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].map((head) => {
+            return (
+              <Button
+                onClick={(e) => {
+                  setPage(head);
+                  (handleSearch()?.length / 10).toFixed(0);
+                  console.log(page);
+                  window.scroll(0, 450);
+                }}
+              >
+                {head}
+              </Button>
+            );
+          })}
+        </div>
       </div>
     </Typographystyle>
   );
@@ -222,7 +231,14 @@ const Typographystyle = styled.div`
       width: 200px;
     }
   }
-
+  .pagination_container {
+    padding: 12px;
+    width: 100%;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .paginationstyle {
     padding: 20px;
     width: 100%;
