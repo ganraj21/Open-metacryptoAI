@@ -3,7 +3,7 @@ import { CryptoState } from "../../CryptoContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import styled from "styled-components";
-import { Button, InputGroup, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 const Signup = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -46,27 +46,24 @@ const Signup = ({ handleclose }) => {
     <BoxStyle>
       <div className="boxdiv">
         <input
-          placeholder="email"
-          aria-label="Enter Email"
+          placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          placeholder="password"
-          label="Enter Password"
+          placeholder="Enter Strong Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
-          placeholder="password"
-          label="Confirm Password"
+          placeholder="Confirm Your Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <Button
           variant="contained"
           size="large"
-          style={{ backgroundColor: "#EEBC1D" }}
+          style={{ backgroundColor: "#EEBC1D", width: "90%", height: "45px" }}
           onClick={handleSubmit}
         >
           Sign Up
@@ -83,9 +80,14 @@ const BoxStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    padding-top: 18px;
   }
   input {
     height: 45px;
     width: 90%;
+    padding-left: 20px;
+    outline: none;
+    border: 1px solid gray;
   }
 `;

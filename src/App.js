@@ -19,11 +19,18 @@ function App() {
     draggable: true,
     theme: "dark",
   };
-  if (alert.message)
-    toast.success(alert.message, {
-      toastOptions,
-    });
 
+  if (alert.type === "error") {
+    if (alert.message)
+      toast.error(alert.message, {
+        toastOptions,
+      });
+  } else {
+    if (alert.message)
+      toast.success(alert.message, {
+        toastOptions,
+      });
+  }
   return (
     <BrowserRouter>
       <Div>

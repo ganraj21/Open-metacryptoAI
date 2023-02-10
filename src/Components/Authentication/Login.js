@@ -3,7 +3,7 @@ import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import styled from "styled-components";
-import { Button, InputGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 const Login = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -66,14 +66,18 @@ export default Login;
 const BoxStyle = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   margin-top: 10px;
   align-items: center;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
     Helvetica, Arial, sans-serif;
+  padding-top: 6px;
 
   input {
     height: 45px;
     width: 90%;
+    padding-left: 20px;
+    outline: none;
+    border: 1px solid gray;
   }
 `;

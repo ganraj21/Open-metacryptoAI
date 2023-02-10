@@ -6,7 +6,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { CryptoState } from "../../CryptoContext";
 import styled from "styled-components";
-import { Button, Container, Modal, Tab, Tabs } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 export default function AuthModal() {
   const [open, setOpen] = useState(false);
@@ -18,10 +18,6 @@ export default function AuthModal() {
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
   const googleProvider = new GoogleAuthProvider();
@@ -42,7 +38,16 @@ export default function AuthModal() {
       handleClose();
     });
   };
-
+  const lgbt = {
+    width: "50%",
+    height: "48px",
+    background: "transparent",
+    color: "#000",
+    border: "none",
+    outline: "none",
+    borderBottom: "1px solid gray",
+    borderRadius: 0,
+  };
   return (
     <div>
       <ModalStyles>
@@ -52,33 +57,38 @@ export default function AuthModal() {
 
         <Modal show={open} onHide={() => setOpen(false)} className="modalest">
           <div className="papers">
-            <Container>
-              <Tabs
-                defaultActiveKey="profile"
-                id="fill-tab-example"
-                className="mb-3 "
-                fill
-                onChange={handleChange}
+            <div className="loguserbtn">
+              <Button
+                className={value === 0 ? "" : "activebtn"}
+                style={lgbt}
+                onClick={() => setValue(0)}
               >
-                <Tab
-                  className="tab"
-                  eventkey="Login"
-                  onClick={() => setValue(0)}
-                  title="Login"
-                ></Tab>
-                <Tab
-                  className="tab"
-                  eventkey="Sign Up"
-                  onClick={() => setValue(1)}
-                  title="Sign Up"
-                ></Tab>
-              </Tabs>
-            </Container>
+                Login
+              </Button>
+              <Button
+                className={value === 1 ? "" : "activebtn"}
+                style={lgbt}
+                onClick={() => setValue(1)}
+              >
+                Sign Up
+              </Button>
+            </div>
 
             <div className="appbarstyle">
               {value === 0 && <Login handleclose={handleClose} />}
               {value === 1 && <Signup handleclose={handleClose} />}
-              <div className="googleboxs">
+              <div
+                style={{
+                  padding: "0 0 20px 0",
+                  marginTop: "10px",
+                  gap: 9,
+                  fontSize: "18px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <span>OR</span>
                 <GoogleButton
                   style={{ width: "90%", outline: "none" }}
@@ -106,16 +116,6 @@ const ModalStyles = styled.div`
       background-color: #607d8b7a;
     }
   }
-  .tab {
-    display: flex;
-  }
-  .modalest {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transperent;
-    backdrop-filter: blur(11px);
-  }
   .papers {
     width: 400px;
     color: #000;
@@ -128,15 +128,22 @@ const ModalStyles = styled.div`
       padding: 15px 20px;
     }
   }
-  .googleboxs {
-    padding: 24px;
-    padding-top: 0px;
-    gap: 20;
-    font-size: 18px;
+  .loguserbtn {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 12px;
+    padding: 9px;
+  }
+  .activebtn {
+    background: red !important;
+  }
+  .modalest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transperent;
+    backdrop-filter: blur(11px);
   }
   .appbarstyle {
     background-color: transparent;
