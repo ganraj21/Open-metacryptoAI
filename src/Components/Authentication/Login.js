@@ -37,14 +37,14 @@ const Login = ({ handleclose }) => {
   };
   return (
     <BoxStyle p={3}>
-      <InputGroup
+      <input
         className="mb-3"
         placeholder="Enter Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <InputGroup
+      <input
         className="mb-3"
         placeholder="Enter Password"
         type="password"
@@ -53,7 +53,7 @@ const Login = ({ handleclose }) => {
       />
       <Button
         variant="contained"
-        style={{ backgroundColor: "#EEBC1D" }}
+        style={{ backgroundColor: "#EEBC1D", width: "90%", height: "45px" }}
         onClick={handleSubmit}
       >
         Login
@@ -68,6 +68,12 @@ const BoxStyle = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 10px;
+  align-items: center;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
     Helvetica, Arial, sans-serif;
+
+  input {
+    height: 45px;
+    width: 90%;
+  }
 `;

@@ -45,22 +45,19 @@ const Signup = ({ handleclose }) => {
   return (
     <BoxStyle>
       <div className="boxdiv">
-        <InputGroup>
-          <Form.Control
-            placeholder="email"
-            aria-label="Enter Email"
-            aria-describedby="basic-addon1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </InputGroup>
-        <InputGroup
+        <input
+          placeholder="email"
+          aria-label="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
           placeholder="password"
           label="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <InputGroup
+        <input
           placeholder="password"
           label="Confirm Password"
           value={confirmPassword}
@@ -86,5 +83,9 @@ const BoxStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+  input {
+    height: 45px;
+    width: 90%;
   }
 `;

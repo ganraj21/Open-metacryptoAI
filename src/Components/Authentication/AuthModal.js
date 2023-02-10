@@ -75,15 +75,16 @@ export default function AuthModal() {
               </Tabs>
             </Container>
 
-            <div className="appbarstyle"></div>
-            {value === 0 && <Login handleclose={handleClose} />}
-            {value === 1 && <Signup handleclose={handleClose} />}
-            <div className="googleboxs">
-              <span>OR</span>
-              <GoogleButton
-                style={{ width: "100%", outline: "none" }}
-                onClick={signInWithGoogle}
-              />
+            <div className="appbarstyle">
+              {value === 0 && <Login handleclose={handleClose} />}
+              {value === 1 && <Signup handleclose={handleClose} />}
+              <div className="googleboxs">
+                <span>OR</span>
+                <GoogleButton
+                  style={{ width: "90%", outline: "none" }}
+                  onClick={signInWithGoogle}
+                />
+              </div>
             </div>
           </div>
         </Modal>
@@ -97,16 +98,16 @@ const ModalStyles = styled.div`
     width: 85px;
     height: 40px;
     margin-left: 15px;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EEBC1D;
+    background-color: #eebc1d;
     &:hover {
       background-color: #607d8b7a;
-    },
+    }
   }
-  .tab{
-    display:flex;
+  .tab {
+    display: flex;
   }
   .modalest {
     display: flex;
@@ -115,29 +116,32 @@ const ModalStyles = styled.div`
     background-color: transperent;
     backdrop-filter: blur(11px);
   }
-  .papers{
-   width: 400px;
-  color: #000;
-  border-radius: 10px;
-  padding: 25px 20px;
-  background: #787878bd;
-  border: 1px solid #3e343499;
-  @media (max-width: 600px) {
-    width: 90%;
-    padding: 15px 20px;
+  .papers {
+    width: 400px;
+    color: #000;
+    border-radius: 10px;
+    padding: 25px 20px;
+    background: #787878bd;
+    border: 1px solid #3e343499;
+    @media (max-width: 600px) {
+      width: 90%;
+      padding: 15px 20px;
+    }
   }
-  }
-  .googleboxs{
+  .googleboxs {
     padding: 24px;
-  padding-top: 0;
-  display:flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 20px;
-  font-size: 18px;
+    padding-top: 0px;
+    gap: 20;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .appbarstyle{
+  .appbarstyle {
     background-color: transparent;
     color: white;
+    display: flex;
+    align-items: center;
   }
 `;

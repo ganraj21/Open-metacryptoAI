@@ -40,13 +40,13 @@ const CoinPage = () => {
       setAlert({
         open: true,
         message: `${coin.name} Added to the watchlist`,
-        typr: "success",
+        type: "success",
       });
     } catch (error) {
       setAlert({
         open: true,
         message: error.message,
-        typr: "error",
+        type: "error",
       });
     }
   };
@@ -66,13 +66,13 @@ const CoinPage = () => {
       setAlert({
         open: true,
         message: `${coin.name} Removed from the Watchlist`,
-        typr: "success",
+        type: "success",
       });
     } catch (error) {
       setAlert({
         open: true,
         message: error.message,
-        typr: "error",
+        type: "error",
       });
     }
   };

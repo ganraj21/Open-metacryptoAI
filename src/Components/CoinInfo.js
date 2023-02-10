@@ -22,7 +22,7 @@ const CoinInfo = ({ coin }) => {
 
     setHistoricData(data.prices);
   };
-  console.log("data", historicData);
+  // console.log("data", historicData);
   useEffect(() => {
     fetchHistoricalData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
