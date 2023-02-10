@@ -7,7 +7,7 @@ import { Button, Container } from "react-bootstrap";
 export default function Banner() {
   return (
     <BannerDiv>
-      <Container>
+      <Container style={{ marginBottom: "21px" }}>
         <div className="bannercontent">
           <div className="tagline">
             <h2 className="tline" variant="h2">

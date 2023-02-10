@@ -235,9 +235,20 @@ const Typographystyle = styled.div`
     padding: 12px;
     width: 100%;
     gap: 6px;
-    display: flex;
     align-items: center;
     justify-content: center;
+    display: flex;
+    height: 83px;
+    @media (max-width: 600px) {
+      display: grid;
+      grid-auto-flow: column dense;
+      grid-template-rows: 50px 50px;
+      height: 100%;
+    }
+    Button {
+      background: transparent;
+      border: 1px solid gray;
+    }
   }
   .paginationstyle {
     padding: 20px;
