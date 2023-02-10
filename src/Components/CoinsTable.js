@@ -40,12 +40,11 @@ const CoinsTable = () => {
           <input
             placeholder="Search For a Crypto Currency.."
             className="textfield "
-            id="cryptoinfo"
             onChange={(e) => setSearch(e.target.value)}
           ></input>
         </div>
 
-        <div className="table_container">
+        <div className="table_container" id="cryptoinfo">
           {loading ? (
             <ProgressBar style={{ backgroundColor: "gold" }} />
           ) : (

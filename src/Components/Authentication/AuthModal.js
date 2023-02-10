@@ -6,7 +6,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { CryptoState } from "../../CryptoContext";
 import styled from "styled-components";
-import { Button, Modal, Tab, Tabs } from "react-bootstrap";
+import { Button, Container, Modal, Tab, Tabs } from "react-bootstrap";
 
 export default function AuthModal() {
   const [open, setOpen] = useState(false);
@@ -44,29 +44,35 @@ export default function AuthModal() {
   };
   return (
     <div>
-      <Button className="authbtn" variant="contained" onClick={handleOpen}>
-        Login
-      </Button>
       <ModalStyles>
-        <Modal
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          open={open}
-          onClose={handleClose}
-          className="modalest"
-        >
+        <Button className="authbtn" variant="contained" onClick={handleOpen}>
+          Login
+        </Button>
+
+        <Modal show={open} onHide={() => setOpen(false)} className="modalest">
           <div className="papers">
-            <div className="appbarstyle">
+            <Container className="tabstyle">
               <Tabs
                 defaultActiveKey="profile"
-                id="uncontrolled-tab-example"
-                className="mb-3"
+                id="fill-tab-example"
+                className="mb-3 "
+                fill
                 onChange={handleChange}
               >
-                <Tab eventKey="home" key={value} title="Login"></Tab>
-                <Tab eventKey="home" key={value} title="Sign Up"></Tab>
+                <Tab
+                  eventkey="Login"
+                  onClick={() => setValue(0)}
+                  title="Login"
+                ></Tab>
+                <Tab
+                  eventkey="Sign Up"
+                  onClick={() => setValue(1)}
+                  title="Sign Up"
+                ></Tab>
               </Tabs>
-            </div>
+            </Container>
+
+            <div className="appbarstyle"></div>
             {value === 0 && <Login handleclose={handleClose} />}
             {value === 1 && <Signup handleclose={handleClose} />}
             <div className="googleboxs">
@@ -88,10 +94,16 @@ const ModalStyles = styled.div`
     width: 85px;
     height: 40px;
     margin-left: 15px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     background-color: #EEBC1D;
     &:hover {
-      background-color: #fff;
+      background-color: #607d8b7a;
     },
+  }
+  .tabstyle{
+    display:flex;
   }
   .modalest {
     display: flex;

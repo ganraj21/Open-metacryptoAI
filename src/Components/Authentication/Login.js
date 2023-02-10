@@ -3,8 +3,7 @@ import { CryptoState } from "../../CryptoContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import styled from "styled-components";
-import { Button } from "react-bootstrap";
-
+import { Button, InputGroup } from "react-bootstrap";
 const Login = ({ handleclose }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -38,13 +37,15 @@ const Login = ({ handleclose }) => {
   };
   return (
     <BoxStyle p={3}>
-      <input
+      <InputGroup
+        className="mb-3"
         placeholder="Enter Email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <InputGroup
+        className="mb-3"
         placeholder="Enter Password"
         type="password"
         value={password}
@@ -52,7 +53,6 @@ const Login = ({ handleclose }) => {
       />
       <Button
         variant="contained"
-        size="large"
         style={{ backgroundColor: "#EEBC1D" }}
         onClick={handleSubmit}
       >

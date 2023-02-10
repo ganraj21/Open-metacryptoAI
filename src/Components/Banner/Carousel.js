@@ -6,10 +6,6 @@ import { TrendingCoins } from "../../config/api";
 import { CryptoState } from "../../CryptoContext";
 import styled from "styled-components";
 
-export function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 function Carousel() {
   const [trending, setTrending] = useState([]);
   const { currency, symbol } = CryptoState();
@@ -26,7 +22,7 @@ function Carousel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-  console.log(trending);
+  console.log(trending.length);
 
   const items = trending.map((coin) => {
     let profit = coin.price_change_percentage_24h;
@@ -53,7 +49,7 @@ function Carousel() {
         </span>
 
         <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
+          {symbol} {coin?.current_price.toFixed(2)}
         </span>
       </Link>
     );
@@ -64,6 +60,9 @@ function Carousel() {
       items: 2,
     },
     512: {
+      items: 3,
+    },
+    1024: {
       items: 4,
     },
   };
