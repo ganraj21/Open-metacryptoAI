@@ -50,6 +50,7 @@ const BannerDiv = styled.div`
     @media (max-width: 600px) {
       height: 590px;
       padding: 19px 0 0 0;
+      margin-top: -135px;
     }
   },
   .tagline{
@@ -62,7 +63,7 @@ const BannerDiv = styled.div`
     gap: 6px;
     align-items: center;
     @media (max-width: 600px) {
-      height: 700px;
+      height: 100vh;
       // margin-left: 10px;
       // width:100%;
     }
