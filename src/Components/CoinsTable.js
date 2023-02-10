@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
+import Footer from "./Footer";
 
 const fontfs =
   "Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif";
@@ -139,6 +140,7 @@ const CoinsTable = () => {
           })}
         </div>
       </div>
+      <Footer />
     </Typographystyle>
   );
 };
