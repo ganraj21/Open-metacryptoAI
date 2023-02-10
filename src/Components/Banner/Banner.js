@@ -59,20 +59,19 @@ const BannerDiv = styled.div`
     width: 100%;
     flex-direction: column;
     justify-content: center;
-    text-align: center
+    text-align: left;
     gap: 6px;
     align-items: center;
     @media (max-width: 600px) {
       height: 100vh;
-      // margin-left: 10px;
-      // width:100%;
+     
     }
   }
   .tline{
    font-weight: bold;
-   margin-bottom: 15px;
+   margin:0px;
    font-size: 3.75rem;
-   font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial, sans-serif;
+   font-family: Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica, Arial, sans-serif;
 
   @media (max-width: 600px) {
     font-size: 3rem;
@@ -85,8 +84,7 @@ const BannerDiv = styled.div`
   font-family: Montserrat;
   @media (max-width: 600px) {
     padding: 15px;
-    margin-left: -10px
-    margin-left: 10px;
+    margin-left: -1px;
   }
   }
 
@@ -96,7 +94,6 @@ const BannerDiv = styled.div`
       margin-left: 23px;
 
     }
-
   }
   .startbtn{
     margin: 18px 0 0 0;
