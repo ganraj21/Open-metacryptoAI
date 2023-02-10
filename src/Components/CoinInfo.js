@@ -119,6 +119,7 @@ const Container = styled.div`
       display: grid;
       grid-auto-flow: column dense;
       grid-template-rows: 50px 50px;
+      gap: 9px;
     }
   }
 `;
