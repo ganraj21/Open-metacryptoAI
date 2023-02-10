@@ -65,6 +65,15 @@ export default function UserSidebar({ handleclose }) {
         <UserModalStyles>
           <div className={show ? "container" : "containeractive_style"}>
             <div className="profilediv">
+              <span
+                style={{ width: "100%", marginTop: "-4px" }}
+                onClick={() => setShow(false)}
+              >
+                <i
+                  class="fas fa-solid fa-angle-right"
+                  style={{ fontSize: "24px" }}
+                ></i>
+              </span>
               <img
                 onClick={() => setShow(false)}
                 className="avatarpic"
