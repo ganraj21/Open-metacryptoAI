@@ -76,13 +76,14 @@ const CoinsTable = () => {
                           <img
                             src={row?.image}
                             alt={row.name}
-                            height="50"
-                            style={{ marginBottom: 10 }}
+                            style={{ height: "50px" }}
                           />
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
+                              alignItems: "flex-start",
+                              // width: "70px",
                             }}
                           >
                             <span
