@@ -71,6 +71,7 @@ const CoinsTable = () => {
                         className="rowstyle"
                         onClick={() => navigate(`/coins/${row.id}`)}
                         key={row.name}
+                        style={{ paddingLeft: "15px" }}
                       >
                         <td component="th" className="tablecell">
                           <img
@@ -83,7 +84,7 @@ const CoinsTable = () => {
                               display: "flex",
                               flexDirection: "column",
                               alignItems: "flex-start",
-                              // width: "70px",
+                              width: "80%",
                             }}
                           >
                             <span
@@ -94,7 +95,9 @@ const CoinsTable = () => {
                             >
                               {row.symbol}
                             </span>
-                            <span style={{ color: "darkgrey" }}>
+                            <span
+                              style={{ color: "darkgrey", textAlign: "left" }}
+                            >
                               {row.name}
                             </span>
                           </div>
@@ -252,8 +255,10 @@ const Typographystyle = styled.div`
       background: transparent;
       border: 1px solid gray;
       &:hover {
-        border: 1px solid #e03be0bd;
-        background: #e03be0bd;
+        background: #fff;
+        color: #000;
+        font-weight: 600;
+        border: 1px solid #fff;
       }
     }
   }

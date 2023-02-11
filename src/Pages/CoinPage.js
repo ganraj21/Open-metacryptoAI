@@ -182,6 +182,10 @@ const ContainerCp = styled.div`
     font-family: Montserrat;
     width: 164px;
     justify-content: flex-start;
+    @media (max-width: 400px) {
+      align-items: start;
+      width: 100%;
+    }
   }
   .typos {
     // width: 100%;

@@ -75,6 +75,9 @@ const NavbarContainer = styled.div`
     align-items: center;
     margin-top: 3px;
     gap: 10px;
+    @media (max-width: 420px) {
+      gap: 6px;
+    }
     @media (max-width: 360px) {
       flex-direction: column;
       gap: 6px;
