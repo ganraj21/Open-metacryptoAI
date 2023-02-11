@@ -96,7 +96,6 @@ const CoinPage = () => {
         </h3>
         <div className="typos" style={{ margin: 0 }}>
           <div dangerouslySetInnerHTML={{ __html: coin_description }} />
-          {/* <div dangerouslySetInnerHTML={{__html:{coin?.description.en.split(". ")[0]}}}></div> */}
         </div>
 
         <div className="market_data">
@@ -195,13 +194,12 @@ const ContainerCp = styled.div`
   }
   .market_data {
     align-self: start;
-    padding: 15px 25px;
+    padding: 15px 25px 25px 25px;
     paddingtop: 10px;
     width: 100%;
     span {
       display: flex;
       align-items: center;
-      // justify-content: center;
     }
     @media (max-width: 900px) {
       display: flex;

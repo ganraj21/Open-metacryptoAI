@@ -119,11 +119,14 @@ const Container = styled.div`
     margin-top: 20px;
     justify-content: space-around;
     width: 100%;
+    text-align: center;
     @media (max-width: 600px) {
       display: grid;
       grid-auto-flow: column dense;
       grid-template-rows: 50px 50px;
       gap: 9px;
+      align-items: center;
+      margin: 0px;
     }
   }
 `;
