@@ -20,7 +20,6 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
-    "react-html-parser": "^2.0.2",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
     "react-router-hash-link": "^2.4.3",

@@ -78,6 +78,7 @@ const CoinPage = () => {
     }
   };
 
+  const coin_description = coin?.description.en.split(". ")[0];
   return (
     <ContainerCp>
       <div className="sidebar_coinpage">
@@ -94,9 +95,10 @@ const CoinPage = () => {
         >
           {coin?.name}
         </h3>
-        <p className="typos" style={{ margin: 0 }}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
-        </p>
+        <div className="typos" style={{ margin: 0 }}>
+          <div dangerouslySetInnerHTML={{ __html: coin_description }} />
+          {/* <div dangerouslySetInnerHTML={{__html:{coin?.description.en.split(". ")[0]}}}></div> */}
+        </div>
 
         <div className="market_data">
           <span>
