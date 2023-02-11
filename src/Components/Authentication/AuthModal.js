@@ -118,6 +118,9 @@ const ModalStyles = styled.div`
       transform: scale(0.9);
       transition: all 0.5s ease-in-out;
     }
+    @media (max-width: 375px) {
+      margin-left: 0px;
+    }
   }
   .papers {
     width: 400px;

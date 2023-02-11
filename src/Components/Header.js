@@ -22,7 +22,10 @@ const Header = () => {
           <h2 className="app_title" onClick={() => navigate("/")}>
             MetaCrypto
           </h2>
-          <div className="formselectbtns">
+          <div
+            className="formselectbtns"
+            style={user ? { gap: "12px" } : { gap: "0px" }}
+          >
             <Form.Select
               aria-label="Default select example"
               className="select_section"
@@ -75,7 +78,7 @@ const NavbarContainer = styled.div`
     align-items: center;
     margin-top: 3px;
     gap: 10px;
-    @media (max-width: 420px) {
+    @media (max-width: 370px) {
       gap: 6px;
     }
     @media (max-width: 360px) {
