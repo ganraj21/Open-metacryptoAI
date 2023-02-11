@@ -14,6 +14,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
+  // const [profit, setProfits] = useState(1);
+
   const { currency } = CryptoState();
 
   Chart.register(CategoryScale);
@@ -25,11 +27,9 @@ const CoinInfo = ({ coin }) => {
   // console.log("data", historicData);
   useEffect(() => {
     fetchHistoricalData();
+    // setProfits(coin.market_data.price_change_24h);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, days, []]);
-
-  // const profit = coin.market_data.price_change_24h > 0;
-  // console.log(coin.market_data.price_change_24h);
 
   return (
     <>
@@ -62,7 +62,10 @@ const CoinInfo = ({ coin }) => {
                   {
                     data: historicData.map((coin) => coin[1]),
                     label: `Past(Past ${days} Days) in ${currency}`,
-                    // borderColor: profit ? "#16c784" : "#ea3943",
+                    borderColor:
+                      coin.market_data.price_change_24h > 0
+                        ? "#16c784"
+                        : "#ea3943",
                   },
                 ],
               }}

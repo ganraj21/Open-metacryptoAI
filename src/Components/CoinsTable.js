@@ -251,6 +251,10 @@ const Typographystyle = styled.div`
     Button {
       background: transparent;
       border: 1px solid gray;
+      &:hover {
+        border: 1px solid #e03be0bd;
+        background: #e03be0bd;
+      }
     }
   }
   .paginationstyle {

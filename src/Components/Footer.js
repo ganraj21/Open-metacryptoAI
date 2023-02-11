@@ -28,6 +28,7 @@ const Footer = () => {
             display: "flex",
             alignItems: "flex-start",
             flexDirection: "column",
+            color: "#9e9e9e",
           }}
         >
           <p style={{ margin: 0 }}>Created by Ganesh Ghadge</p>

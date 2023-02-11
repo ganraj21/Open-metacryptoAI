@@ -8,6 +8,7 @@ import { CryptoState } from "../CryptoContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import styled from "styled-components";
+import ReactHtmlParser from "react-html-parser";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -87,9 +88,14 @@ const CoinPage = () => {
           height="150"
           style={{ marginBottom: 20 }}
         />
-        <h3 className="headingcp">{coin?.name}</h3>
+        <h3
+          className="headingcp"
+          style={{ width: "100%", justifyContent: "center", display: "flex" }}
+        >
+          {coin?.name}
+        </h3>
         <p className="typos" style={{ margin: 0 }}>
-          {coin?.description.en.split(". ")[0]}.
+          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
         </p>
 
         <div className="market_data">
@@ -172,11 +178,12 @@ const ContainerCp = styled.div`
 
   .headingcp {
     font-weight: bold;
-    // margin-bottom: 20px;
     font-family: Montserrat;
+    width: 164px;
+    justify-content: flex-start;
   }
   .typos {
-    width: 100%;
+    // width: 100%;
     font-family: Montserrat;
     text-align: left;
     padding: 15px 25px;
@@ -189,7 +196,7 @@ const ContainerCp = styled.div`
     span {
       display: flex;
       align-items: center;
-      justify-content: center;
+      // justify-content: center;
     }
     @media (max-width: 900px) {
       display: flex;
