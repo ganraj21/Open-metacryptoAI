@@ -8,7 +8,6 @@ import { CryptoState } from "../CryptoContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import styled from "styled-components";
-import ReactHtmlParser from "react-html-parser";
 
 const CoinPage = () => {
   const { id } = useParams();
