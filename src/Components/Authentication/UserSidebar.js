@@ -64,11 +64,15 @@ export default function UserSidebar({ handleclose }) {
 
         <UserModalStyles>
           <div
-            className={show ? "container" : "containeractive_style"}
-            data-aos="fade-left"
+            className={
+              show
+                ? "container_style common_container"
+                : "container_active_style common_container"
+            }
           >
             <div className="profilediv">
               <span
+                className="activeprofile"
                 style={{ width: "100%", marginTop: "-4px" }}
                 onClick={() => setShow(false)}
               >
@@ -129,27 +133,33 @@ export default function UserSidebar({ handleclose }) {
 }
 
 const UserModalStyles = styled.div`
-  .container {
+  .common_container {
     width: 350px;
     padding: 25px;
     display: flex;
     position: absolute;
     height: 100vh;
-    flex-direction: column;
-    font-family: ${font_fs};
-    background: #232323;
     color: #fff;
     backdrop-filter: blur(5px);
     z-index: 100px;
     float: right;
     right: 0;
     top: 0;
-    transition-timing-function: ease-out;
+    flex-direction: column;
+    font-family: ${font_fs};
+    background: #232323;
+    transition: transform 0.4s ease-out;
   }
-  .containeractive_style {
-    transition-timing-function: ease-in;
-    display: none;
+  .container_style {
+    transform: translate3d(0%, 0, 0);
+    visibility: visiable;
   }
+
+  .container_active_style {
+    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+  }
+
   .avatarstyles {
     height: 38px;
     width: 38px;
@@ -173,6 +183,7 @@ const UserModalStyles = styled.div`
     gap: 12px;
     height: 92%;
   }
+
   .spanstyle {
     width: 100%;
     font-size: 25px;
