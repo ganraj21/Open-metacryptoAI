@@ -152,12 +152,12 @@ const UserModalStyles = styled.div`
   }
   .container_style {
     transform: translate3d(0%, 0, 0);
-    visibility: visiable;
+
   }
 
   .container_active_style {
     transform: translate3d(100%, 0, 0);
-    visibility: hidden;
+    display:none;
   }
 
   .avatarstyles {
