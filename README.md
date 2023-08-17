@@ -8,5 +8,8 @@ MetaCrypto is a cutting-edge website dedicated to providing the latest informati
 <img src="https://user-images.githubusercontent.com/89139437/218274885-72ff3d6e-e146-4a97-a60f-10c5e00927b0.png"/>
 <br>
 <img src="https://user-images.githubusercontent.com/89139437/218275013-efd89b2b-e7d2-4f73-af50-8445dab9996a.png"/>
-<br>
+<hr>
+<div>
 <h3 align="center"> DON'T FORGET TO ⭐ THIS REPOSITORY !!!
+</div>
+<hr>
